@@ -3,9 +3,11 @@ name: Luacheck
 on:
   push:
     paths:
+      - .github/workflows/luacheck.yaml
       - '**.lua'
   pull_request:
     paths:
+      - .github/workflows/luacheck.yaml
       - '**.lua'
 jobs:
   lint:
@@ -16,5 +18,7 @@ jobs:
       - name: Luacheck linter
         uses: lunarmodules/luacheck@v1
         with:
-          args: '**.lua'
+          # ignore warnings about globals for now, as will require
+          # quite a bit of mocking of PopTracker interfaces to dismiss those
+          args: '-g .'
 
