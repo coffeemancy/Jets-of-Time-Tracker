@@ -119,7 +119,7 @@ function handleGoMode()
   local cTrigger = Tracker:FindObjectForCode("ctrigger")
   local clone = Tracker:FindObjectForCode("clone")
 
-  local goMode = false
+  local goMode
   if lostWorldsMode() then
     goMode =
       (dreamStone.Active and rubyKnife.Active) or -- has ruby knife and can get to Black Tyrano
@@ -393,7 +393,7 @@ function updateItemsFromInventory(segment)
   end
 
   -- Reset all items to "not found"
-  for k,v in pairs(KEY_ITEMS) do
+  for _,v in pairs(KEY_ITEMS) do
     v.found = false
   end
 
@@ -402,7 +402,7 @@ function updateItemsFromInventory(segment)
     local item = segment:ReadUInt8(0x7E2400 + i)
     -- Loop through the table of key items and see if the current
     -- inventory slot maches any of them
-    for k,v in pairs(KEY_ITEMS) do
+    for _,v in pairs(KEY_ITEMS) do
       if type(v.value) == "number" then
         if item == v.value then
           v.found = true
@@ -411,7 +411,7 @@ function updateItemsFromInventory(segment)
         -- Loop through possible IDs for items with more than one
         -- Not used since the Masamume/Grand Leon change, but leaving this in
         -- in case it's needed in the future.
-        for k2, v2 in pairs(v.value) do
+        for _, v2 in pairs(v.value) do
           if item == v2 then
             v.found = true
           end
@@ -422,7 +422,7 @@ function updateItemsFromInventory(segment)
 
 
   -- Loop the key items and toggle them based on whether or not they were found
-  for k,v in pairs(KEY_ITEMS) do
+  for _,v in pairs(KEY_ITEMS) do
     if v.callback then
       v.callback(v)
     else
@@ -707,9 +707,8 @@ function handleSealedChestLocation(segment, locationName, flags)
   end
 
   local treasuresCollected = 0
-  local value = 0
   for _, flag in pairs(flags) do
-    value = segment:ReadUInt8(flag[1])
+    local value = segment:ReadUInt8(flag[1])
     if (value & flag[2]) ~= 0 then
       treasuresCollected = treasuresCollected + 1
     end
@@ -726,11 +725,10 @@ end
 --
 function handleSealedChests(segment)
 
-  local total = 0
   ------------
   -- 600 AD --
   ------------
-  total = handleSealedChestLocation(segment, "@Porre Elder's House/Sealed Chests", {{0x7F01D3, 0x10}, {0x7F01D3, 0x20}})
+  local total = handleSealedChestLocation(segment, "@Porre Elder's House/Sealed Chests", {{0x7F01D3, 0x10}, {0x7F01D3, 0x20}})
   total = total + handleSealedChestLocation(segment, "@Truce Inn Past/Sealed Chest", {{0x7F014A, 0x80}})
   total = total + handleSealedChestLocation(segment, "@Guardia Forest Past/Sealed Chest", {{0x7F01D2, 0x80}})
   total = total + handleSealedChestLocation(segment, "@Guardia Castle Past/Sealed Chest", {{0x7F00D9, 0x02}})
@@ -828,12 +826,11 @@ function updateChests(segment)
   -- Named entries are subsections within the location.
   --
   local chestsOpened = 0
-  local chests = {}
   --------------------------
   --    65,000,000 BC     --
   --------------------------
   -- Mystic Mountains
-  chests = {
+  local chests = {
     ["Chests"] = {
       {0x13, 0x20}
     }
