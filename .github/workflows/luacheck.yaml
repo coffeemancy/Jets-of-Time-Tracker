@@ -20,5 +20,5 @@ jobs:
         with:
           # ignore warnings about globals for now, as will require
           # quite a bit of mocking of PopTracker interfaces to dismiss those
-          args: '-g .'
+          args: '-g --codes .'
 
