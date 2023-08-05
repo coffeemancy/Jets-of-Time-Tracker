@@ -6,11 +6,6 @@ on:
       - .github/workflows/jsontest.yaml
       - '**.json'
       - tests/checkjson.py
-  pull_request:
-    paths:
-      - .github/workflows/jsontest.yaml
-      - '**.json'
-      - tests/checkjson.py
 jobs:
   build:
     runs-on: ubuntu-latest
