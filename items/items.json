@@ -344,7 +344,7 @@
     "stages": [
       {
         "img": "images/Flag_CharLock_on.png",
-        "codes": "Flag_CharLock_on,"
+        "codes": "Flag_CharLock_on"
       },
       {
         "img": "images/Flag_CharLock_off.png",
@@ -383,6 +383,23 @@
       {
         "img": "images/Flag_Chronosanity_on.png",
         "codes": "Flag_Chronosanity_on, chronosanity"
+      }
+    ]
+  },
+  {
+    "name": "Rocksanity",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/Flag_Rocksanity_off.png",
+        "codes": "Flag_Rocksanity_off"
+      },
+      {
+        "img": "images/Flag_Rocksanity_on.png",
+        "codes": "Flag_Rocksanity_on, rocksanity"
       }
     ]
   },
@@ -437,5 +454,12 @@
     "img": "images/kiyes.png",
     "codes": "checkcounter",
     "max_quantity": 200
+  },
+  {
+    "name": "RockCounter",
+    "type": "consumable",
+    "img": "images/rock.png",
+    "codes": "rockcounter",
+    "max_quantity": 5
   }
 ]
