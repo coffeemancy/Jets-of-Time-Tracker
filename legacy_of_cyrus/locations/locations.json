@@ -132,6 +132,33 @@
 								"y": 703
 							}
 						]
+          },
+          {
+            "name": "Laruba Village",
+						"access_rules":[],
+						"sections":
+						[
+              {
+                "name": "Rocks",
+                "visibility_rules": ["rocksanity"],
+                "chest_unopened_img": "images/charno.png",
+								"chest_opened_img": "images/rock.png",
+								"item_count": 1
+              }
+						],
+						"map_locations":
+						[
+							{
+								"map": "Prehistory",
+								"x": 454,
+								"y": 305
+							},
+							{
+								"map": "All Eras",
+								"x": 454,
+								"y": 305
+							}
+						]
           }
 				]
 			},
@@ -199,6 +226,33 @@
 								"map": "All Eras",
 								"x": 424,
 								"y": 1486
+							}
+						]
+					},
+          {
+						"name": "Kajar",
+						"access_rules":[],
+						"sections":
+						[
+              {
+                "name": "Rocks",
+                "visibility_rules": ["rocksanity"],
+                "chest_unopened_img": "images/charno.png",
+								"chest_opened_img": "images/rock.png",
+								"item_count": 1
+              }
+						],
+						"map_locations":
+						[
+							{
+								"map": "Dark Ages",
+								"x": 1223,
+                "y": 807
+							},
+							{
+								"map": "All Eras",
+								"x": 1223,
+								"y": 1830
 							}
 						]
 					}
@@ -510,6 +564,13 @@
                 "chest_unopened_img": "images/kino.png",
 								"chest_opened_img": "images/kiyes.png",
 								"item_count": 3
+              },
+              {
+                "name": "Rocks",
+                "visibility_rules": ["rocksanity"],
+                "chest_unopened_img": "images/charno.png",
+								"chest_opened_img": "images/rock.png",
+								"item_count": 1
               }
 						],
 						"map_locations":
@@ -628,7 +689,14 @@
 								"chest_unopened_img": "images/kino.png",
 								"chest_opened_img": "images/kiyes.png",
 								"item_count": 1
-							}
+							},
+              {
+                "name": "Rocks",
+                "visibility_rules": ["rocksanity"],
+                "chest_unopened_img": "images/charno.png",
+								"chest_opened_img": "images/rock.png",
+								"item_count": 1
+              }
 						],
 						"map_locations":
 						[

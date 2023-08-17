@@ -32,7 +32,8 @@
 						[
 							[ "yakraboss", "yakraxiiiboss", "zomborboss", "retiniteboss", "heckranboss" ],
 							[ "rusttyranoboss", "masamuneboss", "nizbelboss", "gigagaiaboss"],
-              ["magusboss", "cyrusgrave", "ozzie"]
+              ["magusboss", "cyrusgrave", "ozzie"],
+              [ "rockcounter" ]
 						]
 					}
 				]
@@ -82,12 +83,26 @@
 						    "scale": 0.90,
                 "margin": "0,5"
               }
-						]
-					}
-				]
-			}
-		]
-	},
+            ]
+          },
+          {
+            "type": "array",
+            "h_alignment": "center",
+            "item_margin": "1,1",
+            "content":
+            [
+              {
+                "type": "item",
+                "item": "Flag_Rocksanity_off",
+                "scale": 0.90,
+                "margin": "0,5"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
 	"tracker_capture_item":
 	{
 		"type": "container",
