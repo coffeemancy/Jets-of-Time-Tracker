@@ -26,14 +26,14 @@
 					},
 					{
 						"type": "itemgrid",
-						"h_alignment": "left",
+						"h_alignment": "center",
 						"item_margin": "1,1",
 						"rows":
 						[
 							[ "yakraboss", "yakraxiiiboss", "dragontankboss","zomborboss", "retiniteboss", "heckranboss" ],
 							[ "blacktyranoboss", "rusttyranoboss", "guardianboss", "rseriesboss", "masamuneboss", "nizbelboss" ],
-							[ "magusboss", "gigagaiaboss", "motherbrainboss", "sonofsunboss","zealboss", "golemboss" ],
-              [ "rockcounter" ]	
+							[ "magusboss", "gigagaiaboss", "motherbrainboss", "sonofsunboss","zealboss", "golemboss" ]
+							
 						]
 					}
 				]
@@ -41,68 +41,54 @@
 		]
 	},
 	"flag_grid":
-  {
-    "type": "array",
-    "orientation": "vertical",
-    "margin": "0,0",
-    "content":
-    [
-      {
-        "type": "array",
-        "orientation": "horizontal",
-        "margin": "0,0",
-        "content":
-        [
-          {
-            "type": "array",
-            "h_alignment": "center",
-            "item_margin": "1,1",
-            "content":
-            [
+	{
+		"type": "array",
+		"orientation": "vertical",
+		"margin": "0,0",
+		"content":
+		[
+			{
+				"type": "array",
+				"orientation": "horizontal",
+				"margin": "0,0",
+				"content":
+				[
+					{
+						"type": "array",
+						"h_alignment": "center",
+						"item_margin": "1,1",
+						"content":
+						[
               {
                 "type": "item",
-                "item": "Flag_CharLock_off",
-                "scale": 0.90,
+						    "item": "Flag_CharLock_off",
+						    "scale": 0.90,
                 "margin": "0,5"
               },
               {
                 "type": "item",
-                "item": "Flag_EarlyPendant_off",
-                "scale": 0.90,
+						    "item": "Flag_EarlyPendant_off",
+						    "scale": 0.90,
                 "margin": "0,5"
               },
               {
                 "type": "item",
-                "item": "Flag_Chronosanity_off",
-                "scale": 0.90,
+						    "item": "Flag_Chronosanity_off",
+						    "scale": 0.90,
                 "margin": "0,5"
               },
               {
                 "type": "item",
-                "item": "Flag_Epoch_Fail_off",
-                "scale": 0.90,
+						    "item": "Flag_Epoch_Fail_off",
+						    "scale": 0.90,
                 "margin": "0,5"
               }
-            ]
-          },
-          {
-            "type": "array",
-            "h_alignment": "center",
-            "item_margin": "1,1",
-            "content":
-            [
-              {
-                "type": "item",
-                "item": "Flag_Rocksanity_off",
-                "scale": 0.90,
-                "margin": "0,5"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
+						]
+					}
+				]
+			}
+		]
+	},
 	"tracker_capture_item":
 	{
 		"type": "container",
