@@ -38,20 +38,29 @@ function printDebug(message)
 end
 
 --
--- Check if the tracker is in Rocksanity mode
---
-function rocksanityMode()
-
-  return Tracker:ProviderCountForCode("rocksanity") > 0
-
-end
-
---
 -- Check if the tracker variant is set to Items Only.
 --
 function itemsOnlyTracking()
 
   return string.find(Tracker.ActiveVariantUID, "items")
+
+end
+
+--
+-- Check if the tracker has a flag enabled
+--
+function hasFlagEnabled(flag)
+
+  return Tracker:ProviderCounterForCode(flag) > 0
+
+end
+
+--
+-- Check if the tracker is in Rocksanity mode
+--
+function rocksanityMode()
+
+  return Tracker:ProviderCountForCode("rocksanity") > 0
 
 end
 
@@ -333,6 +342,10 @@ KEY_ITEMS = {
   {value=0xE2, name="clone"},
   {value=0xE3, name="tomapop", callback=handleItemTurnin, address=0x7F01A3, flag=0x80},
   {value=0xE9, name="jetsoftime", callback=handleItemTurnin, address=0x7F00BA, flag=0x80},
+  {value=0xD5, name="bikekey"},
+  {value=0xD4, name="arrisseed"},
+  -- TODO: handle seed turnin to Doan
+  -- {value=0xD4, name="arrisseed", callback=handleItemTurnin, address=?, flag=?},
 
   -- rocks
   {value=0xAE, name="blackrock", rock=true, equipable=true, offset=0x2A},
@@ -510,6 +523,11 @@ function updateEventsAndBosses(segment)
   updateBoss("gigagaiaboss", segment, 0x7F0100, 0x20)
   updateBoss("golemboss", segment, 0x7F0105, 0x80)
 
+  -- if hasFlagEnabled("unlockedskyways") then
+    -- TODO: blackbird boss
+    -- updateBoss("fixedepoch", segment, ?, ?)
+  -- end
+
   -- Middle Ages
   updateBoss("yakraboss", segment, 0x7F000D, 0x01)
   updateBoss("masamuneboss", segment, 0x7F00F3, 0x20)
@@ -549,7 +567,11 @@ function updateEventsAndBosses(segment)
     -- Don't check these events in Lost Worlds mode, they don't exist.
     if not lostWorldsMode() then
       -- Moonstone is the only prehistory event that is not part of the Lost Worlds mode.
-      updateEvent("@Sun Keep/Charge the Moonstone", segment, 0x7F013A, 0x40)
+      if hasFlagEnabled("Flag_ExtraSunKeep_on") then
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Sun Keep/Charge Moonstone", segment, 0x7F013A, 0x40)
+      else
+        updateEvent("@Sun Keep/Charge the Moonstone", segment, 0x7F013A, 0x40)
+      end
 
       -- Middle Ages
       updateEvent("@Manoria Cathedral/Saved by Frog", segment, 0x7F0100, 0x01)
@@ -571,9 +593,12 @@ function updateEventsAndBosses(segment)
       keyItemChecksDone = keyItemChecksDone + updateEvent("@Guardia Castle Present/King Guardia's Trial", segment, 0x7F00A2, 0x80)
       keyItemChecksDone = keyItemChecksDone + handleMelchiorRefinements(segment)
 
-      -- Checks specific to vanilla randomizer mode
-      if vanillaRandoMode() then
+      -- Checks specific to vanilla randomizer mode or specific extras flags
+      if vanillaRandoMode() or hasFlagEnabled("Flag_ExtraBekklerSpot_on") then
         keyItemChecksDone = keyItemChecksDone + updateEvent("@Norstein Bekkler's Tent of Horrors/Clone Game", segment, 0x7F007C, 0x01)
+      end
+
+      if vanillaRandoMode() or hasFlagEnabled("Flag_ExtraCyrusGrave_on") then
         keyItemChecksDone = keyItemChecksDone + updateEvent("@Northern Ruins Past/Cyrus Grave", segment, 0x7F01A3, 0x40)
       end
 
@@ -582,11 +607,26 @@ function updateEventsAndBosses(segment)
         updateBoss("ozzie", segment, 0x7F01A1, 0x80)
         updateBoss("cyrusgrave", segment, 0x7F01A3, 0x40)
       end
+      if hasFlagEnabled("Flag_ExtraOzzieFort_on") then
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Ozzie's Fort/Defeat Ozzie", segment, 0x7F01A1, 0x80)
+      end
+
+      -- Checks specific to Rocksanity
+      if rocksanityMode() then
+        -- TODO: these don't seem to be quite right
+        updateEvent("@Denadoro Mts/Rock", segment, 0x7F00F7, 0x02)
+        updateEvent("@Laruba Village/Rock", segment, 0x7F01AC, 0x10)
+        updateEvent("@Kajar/Rock", segment, 0x7F00F4, 0x0)
+      end
     end
 
     -- Future
     updateEvent("@Proto Dome/Fix Robo", segment, 0x7F00F3, 0x02)
     keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Activate the Computer", segment, 0x7F00A4, 0x01)
+    -- if hasFlagEnabled("Flag_ExtraSplitArris_on") then
+      -- TODO: find correct bits
+      -- keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Trade the Seed", segment, ?, ?)
+    -- end
     keyItemChecksDone = keyItemChecksDone + updateEvent("@Sun Palace/Moon Stone", segment, 0x7F013A, 0x02) -- same as Son of Sun
     keyItemChecksDone = keyItemChecksDone + updateEvent("@Geno Dome/Defeat Mother Brain", segment, 0x7F013B, 0x10) -- Same as Mother Brain
   end -- end event tracking
@@ -622,7 +662,9 @@ function updateEventsAndBosses(segment)
 
   -- Check if the Epoch is capable of flight.
   -- This is used in the Epoch Fail mode of Vanilla Rando
-  updateEvent("@Snail Stop/Attach Epoch Wings", segment, 0x7F00BA, 0x80)
+  if not hasFlagEnabled("unlockedskyways") then
+    updateEvent("@Snail Stop/Attach Epoch Wings", segment, 0x7F00BA, 0x80)
+  end
 
 end
 
@@ -1271,6 +1313,7 @@ function updateChests(segment)
       {0x0E, 0x80}
     }
   }
+  -- TODO: add Race Log chest when Johnny Race enabled
   chestsOpened = chestsOpened + handleChests(segment, "@Lab32/", chests)
 
   -- Geno Dome
@@ -1293,6 +1336,11 @@ function updateChests(segment)
     }
   }
   chestsOpened = chestsOpened + handleChests(segment, "@Geno Dome/", chests)
+
+  if rocksanityMode() then
+    -- Giant's Claw "Blue Rock" chest
+    handleChests(segment, "@Giant's Claw/", {["Rock"] = {{0x0B, 0x40}}})
+  end
 
   CHECK_COUNTERS.chests = chestsOpened
   updateCollectionCount()

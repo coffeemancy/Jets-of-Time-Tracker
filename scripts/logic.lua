@@ -49,6 +49,16 @@ function canAccessSunkenDesert()
   return pendant or gateKey
 end
 
+function canAccessFactory()
+  if canFly() then
+    return true
+  end
+
+  local johnnyRace = Tracker:ProviderCountForCode("Flag_JohnnyRace_on") > 0
+  local hasBikekey = Tracker:FindObjectForCode("bikekey").Active
+  return (not johnnyRace) or hasBikekey
+end
+
 function canAccessGiantsClaw()
   local tomaspop = Tracker:FindObjectForCode("tomaspop").Active
   if not (canFly() and tomaspop) then
@@ -137,3 +147,13 @@ function canFly()
   return (not epochfail) or fixedepoch
 end
 
+function useLegacyEpochFail()
+  local epochfail = Tracker:ProviderCountForCode("epochfail") > 0
+  local unlockedSkyways = Tracker:ProviderCountForCode("unlockedskyways") > 0
+  return epochfail and not unlockedSkyways
+end
+
+function useVanillaSunKeep()
+  local sunKeepSpot = Tracker:ProviderCountForCode("Flag_ExtraSunKeep_on") > 0
+  return not sunKeepSpot
+end

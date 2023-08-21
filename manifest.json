@@ -12,6 +12,7 @@
     "lost_world_items": {"display_name": "Item Tracker (Lost Worlds)"},
     "lost_worlds": {"display_name": "Map Tracker (Lost Worlds)"},
     "standard": {"display_name": "Map Tracker"},
+    "extras": {"display_name": "Map Tracker (Extras)"},
     "vanilla_rando": {"display_name": "Map Tracker (Vanilla Rando)"}
   }
 }
