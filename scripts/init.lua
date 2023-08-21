@@ -16,6 +16,10 @@ elseif string.find(Tracker.ActiveVariantUID, "vanilla_rando") then
   Tracker:AddLocations("vanilla_rando/locations/locations.json")
   Tracker:AddLayouts("vanilla_rando/layouts/tracker.json")
   Tracker:AddLayouts("vanilla_rando/layouts/broadcast.json")
+elseif string.find(Tracker.ActiveVariantUID, "extras") then
+  Tracker:AddLocations("locations/locations.json")
+  Tracker:AddLayouts("layouts/tracker_extras.json")
+  Tracker:AddLayouts("layouts/broadcast.json")
 else
   Tracker:AddLocations("locations/locations.json")
   Tracker:AddLayouts("layouts/tracker.json")

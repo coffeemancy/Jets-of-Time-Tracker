@@ -140,7 +140,15 @@
 						[
 							{
 								"name": "Charge the Moonstone",
-								"hosted_item": "Sunstone"
+                "visibility_rules": ["$useVanillaSunKeep"],
+								"hosted_item": "sunstone"
+							},
+							{
+								"name": "Charge Moonstone",
+                "visibility_rules": ["Flag_ExtraSunKeep_on"],
+                "chest_unopened_img": "images/kino.png",
+								"chest_opened_img": "images/kiyes.png",
+								"item_count": 1
 							}
 						],
 						"map_locations":
@@ -197,7 +205,7 @@
 						"sections":
 						[
               {
-                "name": "Rocks",
+                "name": "Rock",
                 "visibility_rules": ["rocksanity"],
                 "chest_unopened_img": "images/charno.png",
 								"chest_opened_img": "images/rock.png",
@@ -313,11 +321,11 @@
 					},
           {
 						"name": "Kajar",
-						"access_rules":[],
+						"access_rules":["unlockedskyways", "blacktyranoboss", "magusboss"],
 						"sections":
 						[
               {
-                "name": "Rocks",
+                "name": "Rock",
                 "visibility_rules": ["rocksanity"],
                 "chest_unopened_img": "images/charno.png",
 								"chest_opened_img": "images/rock.png",
@@ -335,6 +343,32 @@
 								"map": "All Eras",
 								"x": 1223,
 								"y": 1830
+							}
+						]
+					},
+					{
+						"name": "Blackbird",
+						"access_rules":["unlockedskyways", "blacktyranoboss", "magusboss"],
+						"sections":
+						[
+              {
+                "name": "Attach Epoch Wings",
+                "visibility_rules": ["epochfail,unlockedskyways"],
+                "access_rules":["jetsoftime"],
+								"hosted_item": "fixedepoch"
+              }
+						],
+						"map_locations":
+						[
+							{
+								"map": "Dark Ages",
+								"x": 1175,
+								"y": 817
+							},
+							{
+								"map": "All Eras",
+								"x": 1175,
+								"y": 1840
 							}
 						]
 					}
@@ -648,7 +682,7 @@
 								"item_count": 3
               },
               {
-                "name": "Rocks",
+                "name": "Rock",
                 "visibility_rules": ["rocksanity"],
                 "chest_unopened_img": "images/charno.png",
 								"chest_opened_img": "images/rock.png",
@@ -773,7 +807,7 @@
 								"item_count": 1
 							},
               {
-                "name": "Rocks",
+                "name": "Rock",
                 "visibility_rules": ["rocksanity"],
                 "chest_unopened_img": "images/charno.png",
 								"chest_opened_img": "images/rock.png",
@@ -866,6 +900,13 @@
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
                 "item_count": 2
+              },
+              {
+                "name": "Defeat Ozzie",
+                "visibility_rules": ["Flag_ExtraOzzieFort_on"],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
               }
 						],
 						"map_locations":
@@ -945,6 +986,13 @@
 						"access_rules":["$canFly, grandleon"],
 						"sections":
 						[
+              {
+								"name": "Cyrus Grave",
+                "visibility_rules": ["Flag_ExtraCyrusGrave_on"],
+								"chest_unopened_img": "images/kino.png",
+								"chest_opened_img": "images/kiyes.png",
+								"item_count": 1
+							},
               {
 								"name": "Chests",
                 "visibility_rules": ["chronosanity"],
@@ -1121,7 +1169,7 @@
 							},
               {
                 "name": "Attach Epoch Wings",
-                "visibility_rules": ["epochfail"],
+                "visibility_rules": ["$useLegacyEpochFail"],
                 "access_rules":["jetsoftime"],
 								"hosted_item": "fixedepoch"
               }
@@ -1450,6 +1498,33 @@
 								"y": 263
 							}
 						]
+					},
+          {
+						"name": "Norstein Bekkler's Tent of Horrors",
+						"access_rules": ["ctrigger"],
+						"sections":
+						[
+              {
+								"name": "Clone Game",
+                "visibility_rules": ["Flag_ExtraBekklerSpot_on"],
+								"chest_unopened_img": "images/kino.png",
+								"chest_opened_img": "images/kiyes.png",
+								"item_count": 1
+							}
+						],
+						"map_locations":
+						[
+							{
+								"map": "All Eras",
+								"x": 1965,
+								"y": 1240
+							},
+							{
+								"map": "Present",
+								"x": 430,
+								"y": 216
+							}
+						]
 					}
 				]
 			},
@@ -1470,6 +1545,14 @@
 							},
 							{
 								"name": "Activate the Computer",
+								"chest_unopened_img": "images/kino.png",
+								"chest_opened_img": "images/kiyes.png",
+								"item_count": 1
+							},
+							{
+								"name": "Trade the Seed",
+                "visibility_rules": ["Flag_ExtraSplitArris_on"],
+                "access_rules": ["arrisseed"],
 								"chest_unopened_img": "images/kino.png",
 								"chest_opened_img": "images/kiyes.png",
 								"item_count": 1
@@ -1506,7 +1589,7 @@
 					},
 					{
 						"name": "Proto Dome",
-						"access_rules":["Flag_CharLock_on,rseriesboss", "Flag_CharLock_off"],
+						"access_rules":["$canAccessFactory,Flag_CharLock_on,rseriesboss", "$canAccessFactory,Flag_CharLock_off"],
 						"sections":
 						[
 							{
@@ -1532,7 +1615,7 @@
 					},
 					{
 						"name": "Factory",
-						"access_rules":[],
+						"access_rules":["$canAccessFactory"],
 						"sections":
 						[
 							{
@@ -1776,6 +1859,14 @@
 						"name": "Lab32",
 						"sections":
 						[
+							{
+								"name": "Race Log",
+                "visibility_rules": ["Flag_JohnnyRace_on"],
+                "access_rules": ["bikekey"],
+								"chest_unopened_img": "images/kino.png",
+								"chest_opened_img": "images/kiyes.png",
+								"item_count": 1
+							},
 							{
 								"name": "Chests",
                 "visibility_rules": ["chronosanity"],

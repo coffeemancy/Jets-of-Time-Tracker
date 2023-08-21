@@ -138,7 +138,7 @@
           "codes": "sunstone"
         }
       ]
-    },
+  },
 	{
 		"name": "Rainbow Shell",
 		"type": "toggle",
@@ -387,6 +387,40 @@
     ]
   },
   {
+    "name": "Epoch Fail",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/Flag_Epoch_Fail_off.png",
+        "codes": "Flag_Epoch_Fail_off"
+      },
+      {
+        "img": "images/Flag_Epoch_Fail_on.png",
+        "codes": "Flag_Epoch_Fail_on, epochfail"
+      }
+    ]
+  },
+  {
+    "name": "Unlocked Skyways",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/Flag_Unlocked_Skyways_off.png",
+        "codes": "Flag_Unlocked_Skyways_off"
+      },
+      {
+        "img": "images/Flag_Unlocked_Skyways_on.png",
+        "codes": "Flag_Unlocked_Skyways_on, unlockedskyways"
+      }
+    ]
+  },
+  {
     "name": "Rocksanity",
     "type": "progressive",
     "allow_disabled": false,
@@ -404,22 +438,138 @@
     ]
   },
   {
-    "name": "Epoch Fail",
+    "name": "JohnnyRace",
     "type": "progressive",
     "allow_disabled": false,
     "initial_stage_idx": 0,
     "loop": true,
     "stages": [
       {
-        "img": "images/Flag_Epoch_Fail_off.png",
-        "codes": "Flag_Epoch_Fail_off"
+        "img": "images/Flag_JohnnyRace_off.png",
+        "codes": "Flag_JohnnyRace_off"
       },
       {
-        "img": "images/Flag_Epoch_Fail_on.png",
-        "codes": "Flag_Epoch_Fail_on, epochfail"
+        "img": "images/Flag_JohnnyRace_on.png",
+        "codes": "Flag_JohnnyRace_on, johnnyrace"
       }
     ]
   },
+  {
+    "name": "ExtraSplitArris",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/Flag_ExtraSplitArris_off.png",
+        "codes": "Flag_ExtraSplitArris_off"
+      },
+      {
+        "img": "images/Flag_ExtraSplitArris_on.png",
+        "codes": "Flag_ExtraSplitArris_on"
+      }
+    ]
+  },
+  {
+    "name": "ExtraSunKeep",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/Flag_ExtraSunKeep_off.png",
+        "codes": "Flag_ExtraSunKeep_off"
+      },
+      {
+        "img": "images/Flag_ExtraSunKeep_on.png",
+        "codes": "Flag_ExtraSunKeep_on"
+      }
+    ]
+  },
+  {
+    "name": "ExtraTools",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/Flag_ExtraTools_off.png",
+        "codes": "Flag_ExtraTools_off"
+      },
+      {
+        "img": "images/Flag_ExtraTools_on.png",
+        "codes": "Flag_ExtraTools_on"
+      }
+    ]
+  },
+  {
+    "name": "ExtraBekklerSpot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/Flag_ExtraBekklerSpot_off.png",
+        "codes": "Flag_ExtraBekklerSpot_off"
+      },
+      {
+        "img": "images/Flag_ExtraBekklerSpot_on.png",
+        "codes": "Flag_ExtraBekklerSpot_on"
+      }
+    ]
+  },
+  {
+    "name": "ExtraCyrusGrave",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/Flag_ExtraCyrusGrave_off.png",
+        "codes": "Flag_ExtraCyrusGrave_off"
+      },
+      {
+        "img": "images/Flag_ExtraCyrusGrave_on.png",
+        "codes": "Flag_ExtraCyrusGrave_on"
+      }
+    ]
+  },
+  {
+    "name": "ExtraOzzieFort",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/Flag_ExtraOzzieFort_off.png",
+        "codes": "Flag_ExtraOzzieFort_off"
+      },
+      {
+        "img": "images/Flag_ExtraOzzieFort_on.png",
+        "codes": "Flag_ExtraOzzieFort_on"
+      }
+    ]
+  },
+	{
+		"name": "Bike Key",
+		"type": "toggle",
+		"loop": "true",
+		"img": "images/bikekey.png",
+		"codes": "bikekey"
+	},
+	{
+		"name": "Arris Seed",
+		"type": "toggle",
+		"loop": "true",
+		"img": "images/arrisseed.png",
+		"codes": "arrisseed"
+	},
 	{
 		"name": "Jerky Item",
 		"type": "toggle",
