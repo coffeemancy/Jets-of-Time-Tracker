@@ -20,4 +20,5 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Check JSON files
         run: |
-          ./tests/checkjson.py
+          pip install -r tests/requirements.txt
+          pytest tests/test_json.py
