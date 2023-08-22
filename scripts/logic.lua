@@ -45,7 +45,7 @@ function canAccessSunkenDesert()
 
   -- Vanilla rando logic
   local pendant = Tracker:FindObjectForCode("pendant").Active
-  local gateKey = Tracker:FindObjectForCode("gateKey").Active
+  local gateKey = Tracker:FindObjectForCode("gatekey").Active
   return pendant or gateKey
 end
 
@@ -61,7 +61,7 @@ function canAccessGiantsClaw()
 
   -- Vanilla rando logic
   local pendant = Tracker:FindObjectForCode("pendant").Active
-  local gateKey = Tracker:FindObjectForCode("gateKey").Active
+  local gateKey = Tracker:FindObjectForCode("gatekey").Active
   return pendant or gateKey
 end
 
@@ -93,7 +93,7 @@ function canAccessNorthernRuins()
   if vanillaRandoMode() then
     local tools = Tracker:FindObjectForCode("tools").Active
     local pendant = Tracker:FindObjectForCode("pendant").Active
-    local gateKey = Tracker:FindObjectForCode("gateKey").Active
+    local gateKey = Tracker:FindObjectForCode("gatekey").Active
     return tools and (pendant or gateKey)
   end
 
@@ -108,16 +108,15 @@ function canAccessOzzieFort()
   if legacyOfCyrusMode() then
     local frog = Tracker:FindObjectForCode("frog").Active
     local magus = Tracker:FindObjectForCode("magus").Active
-    local magusboss = Trakcer:FindObjectForCode("magusboss").Active
+    local magusboss = Tracker:FindObjectForCode("magusboss").Active
     return frog and magus and magusboss
   end
 
   local pendant = Tracker:FindObjectForCode("pendant").Active
-  local gateKey = Tracker:FindObjectForCode("gateKey").Active
+  local gateKey = Tracker:FindObjectForCode("gatekey").Active
 
   return pendant or gateKey
 end
-
 
 function couldAccessOceanPalace()
   return not legacyOfCyrusMode()
