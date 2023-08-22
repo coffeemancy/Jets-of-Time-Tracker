@@ -51,7 +51,7 @@ end
 --
 function hasFlagEnabled(flag)
 
-  return Tracker:ProviderCounterForCode(flag) > 0
+  return Tracker:ProviderCountForCode(flag) > 0
 
 end
 

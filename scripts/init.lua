@@ -17,7 +17,6 @@ elseif vanillaRandoMode() then
   Tracker:AddLayouts("vanilla_rando/layouts/tracker.json")
   Tracker:AddLayouts("vanilla_rando/layouts/broadcast.json")
 elseif string.find(Tracker.ActiveVariantUID, "extras") then
-  Tracker:AddLocations("locations/locations.json")
   Tracker:AddLayouts("layouts/tracker_extras.json")
   Tracker:AddLayouts("layouts/broadcast.json")
 else
