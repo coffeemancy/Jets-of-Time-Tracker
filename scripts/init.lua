@@ -9,11 +9,16 @@ local extra_flags_grid_component = "layouts/components/extra_flags_grid.json"
 local tracker_layout = "layouts/tracker.json"
 local broadcast_layout = "layouts/broadcast.json"
 
+if legacyOfCyrusMode() then
+  items_grid_component = "legacy_of_cyrus/layouts/components/items_grid.json"
+  bosses_grid_component = "legacy_of_cyrus/layouts/components/bosses_grid.json"
+end
+
 if string.find(Tracker.ActiveVariantUID, "items_only") then
   tracker_layout = "items_only/layouts/tracker.json"
-elseif string.find(Tracker.ActiveVariantUID, "lost_world_items") then
-  tracker_layout = "lost_world_items/layouts/tracker.json"
-  broadcast_layout = "lost_world_items/layouts/broadcast.json"
+elseif string.find(Tracker.ActiveVariantUID, "lost_worlds_items") then
+  tracker_layout = "lost_worlds_items/layouts/tracker.json"
+  broadcast_layout = "lost_worlds_items/layouts/broadcast.json"
 elseif lostWorldsMode() then
   tracker_layout = "lost_worlds/layouts/tracker.json"
   brodcast_layout = "lost_worlds/layouts/broadcast.json"

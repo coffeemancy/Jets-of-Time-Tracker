@@ -6,20 +6,23 @@
   "package_uid": "CT_JoT_Tracker",
   "author": "TheBigSalarius, Aeralis & Anguirel",
   "variants": {
+    "default": {
+      "display_name": "Map Tracker"
+    },
     "items_only": {
       "display_name": "Item Tracker"
     },
     "legacy_of_cyrus": {
       "display_name": "Map Tracker (Legacy Of Cyrus)"
     },
-    "lost_world_items": {
-      "display_name": "Item Tracker (Lost Worlds)"
+    "legacy_of_cyrus_items_only": {
+      "display_name": "Item Tracker (Legacy Of Cyrus)"
     },
     "lost_worlds": {
       "display_name": "Map Tracker (Lost Worlds)"
     },
-    "standard": {
-      "display_name": "Map Tracker"
+    "lost_worlds_items": {
+      "display_name": "Item Tracker (Lost Worlds)"
     },
     "vanilla_rando": {
       "display_name": "Map Tracker (Vanilla Rando)"
