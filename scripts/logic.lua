@@ -21,9 +21,34 @@ function notLostWorldsMode()
   return not lostWorldsMode()
 end
 
+-- Check if the tracker is in Ice Age mode
+function iceAgeMode()
+  return string.find(Tracker.ActiveVariantUID, "ice_age") ~= nil
+end
+
+function notIceAgeMode()
+  return not iceAgeMode()
+end
+
 -- Check if the tracker is in Vanilla Rando mode
 function vanillaRandoMode()
   return string.find(Tracker.ActiveVariantUID, "vanilla") ~= nil
+end
+
+function canAccessDarkAges()
+  if lostWorldsMode() then
+    return true
+  end
+
+  if iceAgeMode() then
+    local blackTyrano = Tracker:FindObjectForCode("blacktyranoboss").Active
+    return blackTyrano
+  end
+
+  local gateKey = Tracker:FindObjectForCode("gatekey").Active
+  local magusboss = Tracker:FindObjectForCode("magusboss").Active
+  local rseriesboss = Tracker:FindObjectForCode("rseriesboss").Active
+  return gateKey and rseriesboss and magusboss
 end
 
 function canAccessSealed()
@@ -66,6 +91,10 @@ function canAccessGiantsClaw()
 end
 
 function canAccessMagusCastle()
+  if iceAgeMode() then
+    return false
+  end
+
   local frog = Tracker:FindObjectForCode("frog").Active
   local masamune = Tracker:FindObjectForCode("masamune").Active
 
@@ -119,7 +148,7 @@ function canAccessOzzieFort()
 end
 
 function couldAccessOceanPalace()
-  return not legacyOfCyrusMode()
+  return not (legacyOfCyrusMode() or iceAgeMode())
 end
 
 function couldAccessTyranoCastle()

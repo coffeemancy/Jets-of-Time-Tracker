@@ -16,6 +16,9 @@ elseif lostWorldsMode() then
   items_grid_component = "lost_worlds/layouts/components/items_grid.json"
   bosses_grid_component = "lost_worlds/layouts/components/bosses_grid.json"
   flags_grid_component = "lost_worlds/layouts/components/flags_grid.json"
+elseif iceAgeMode() then
+  items_grid_component = "mode_ice_age/layouts/components/items_grid.json"
+  bosses_grid_component = "mode_ice_age/layouts/components/bosses_grid.json"
 elseif vanillaRandoMode() then
   items_grid_component = "vanilla_rando/layouts/components/items_grid.json"
 end
