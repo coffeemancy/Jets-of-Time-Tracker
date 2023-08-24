@@ -26,6 +26,9 @@
     },
     "vanilla_rando": {
       "display_name": "Map Tracker (Vanilla Rando)"
+    },
+    "vanilla_rando_items_only": {
+      "display_name": "Item Tracker (Vanilla Rando)"
     }
   }
 }

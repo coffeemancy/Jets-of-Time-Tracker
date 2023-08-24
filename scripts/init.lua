@@ -16,15 +16,14 @@ elseif lostWorldsMode() then
   items_grid_component = "lost_worlds/layouts/components/items_grid.json"
   bosses_grid_component = "lost_worlds/layouts/components/bosses_grid.json"
   flags_grid_component = "lost_worlds/layouts/components/flags_grid.json"
+elseif vanillaRandoMode() then
+  items_grid_component = "vanilla_rando/layouts/components/items_grid.json"
 end
 
 if string.find(Tracker.ActiveVariantUID, "items_only") then
   tracker_layout = "items_only/layouts/tracker.json"
 elseif lostWorldsMode() then
   tracker_layout = "lost_worlds/layouts/tracker.json"
-elseif vanillaRandoMode() then
-  tracker_layout = "vanilla_rando/layouts/tracker.json"
-  broadcast_layout = "vanilla_rando/layouts/broadcast.json"
 end
 
 Tracker:AddLocations("locations/locations.json")
