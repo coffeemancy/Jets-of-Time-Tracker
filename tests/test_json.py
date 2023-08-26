@@ -31,8 +31,6 @@ def formatted_jsonfiles(jsonfiles) -> List[Path]:
     # to avoid having large git diffs
     excluded_paths = [
         'items/',
-        'items_only/',
-        'layouts/',
         'legacy_of_cyrus/',
         'locations/',
         'lost_world_items/',
