@@ -16,6 +16,9 @@ elseif lostWorldsMode() then
   items_grid_component = "lost_worlds/" .. items_grid_component
   bosses_grid_component = "lost_worlds/" .. bosses_grid_component
   flags_grid_component = "lost_worlds/" .. flags_grid_component
+elseif iceAgeMode() then
+  items_grid_component = "mode_ice_age/" .. items_grid_component
+  bosses_grid_component = "mode_ice_age/" .. bosses_grid_component
 elseif vanillaRandoMode() then
   items_grid_component = "vanilla_rando/" .. items_grid_component
 end
