@@ -12,16 +12,16 @@ local broadcast_layout = "layouts/broadcast.json"
 if legacyOfCyrusMode() then
   items_grid_component = "legacy_of_cyrus/" .. items_grid_component
   bosses_grid_component = "legacy_of_cyrus/" .. bosses_grid_component
+elseif lostWorldsMode() then
+  items_grid_component = "lost_worlds/" .. items_grid_component
+  bosses_grid_component = "lost_worlds/" .. bosses_grid_component
+  flags_grid_component = "lost_worlds/" .. flags_grid_component
 end
 
 if string.find(Tracker.ActiveVariantUID, "items_only") then
   tracker_layout = "items_only/layouts/tracker.json"
-elseif string.find(Tracker.ActiveVariantUID, "lost_worlds_items") then
-  tracker_layout = "lost_worlds_items/layouts/tracker.json"
-  broadcast_layout = "lost_worlds_items/layouts/broadcast.json"
 elseif lostWorldsMode() then
   tracker_layout = "lost_worlds/layouts/tracker.json"
-  brodcast_layout = "lost_worlds/layouts/broadcast.json"
 elseif vanillaRandoMode() then
   tracker_layout = "vanilla_rando/layouts/tracker.json"
   broadcast_layout = "vanilla_rando/layouts/broadcast.json"

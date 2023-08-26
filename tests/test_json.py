@@ -32,8 +32,6 @@ def formatted_jsonfiles(jsonfiles) -> List[Path]:
     excluded_paths = [
         'items/',
         'locations/',
-        'lost_world_items/',
-        'lost_worlds/',
         'vanilla_rando/'
     ]
     return [

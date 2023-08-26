@@ -21,7 +21,7 @@
     "lost_worlds": {
       "display_name": "Map Tracker (Lost Worlds)"
     },
-    "lost_worlds_items": {
+    "lost_worlds_items_only": {
       "display_name": "Item Tracker (Lost Worlds)"
     },
     "vanilla_rando": {
