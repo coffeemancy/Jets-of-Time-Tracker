@@ -465,6 +465,7 @@ function updateEventsAndBosses(segment)
   -- Prehistory
   updateBoss("nizbelboss", segment, 0x7F0105, 0x20)
   updateBoss("blacktyranoboss", segment, 0x7F00EC, 0x80)
+  updateEvent("@Dactyl Nest/Friend to the Dactyls", segment, 0x7F0160, 0x10)
 
   -- Dark Ages
   updateBoss("gigagaiaboss", segment, 0x7F0100, 0x20)
@@ -501,7 +502,6 @@ function updateEventsAndBosses(segment)
   if not itemsOnlyTracking() then
     -- Prehistory
     keyItemChecksDone = keyItemChecksDone + updateEvent("@Reptite Lair/Defeat Nizbel", segment, 0x7F0105, 0x20)
-    updateEvent("@Dactyl Nest/Friend to the Dactyls", segment, 0x7F0160, 0x10)
 
     -- Dark Ages
     keyItemChecksDone = keyItemChecksDone + updateEvent("@Mt Woe/Defeat Giga Gaia", segment, 0x7F0100, 0x20) -- same as boss flag
