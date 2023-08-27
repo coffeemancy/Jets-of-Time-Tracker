@@ -31,12 +31,6 @@ function addTrackerLayouts()
 
   if itemsOnlyTracking() then
     layouts["tracker"] = "items_only/layouts/tracker.json"
-  elseif string.find(Tracker.ActiveVariantUID, "lost_world_items") then
-    layouts["tracker"] = "lost_world_items/layouts/tracker.json"
-    layouts["broadcast"] = "lost_world_items/layouts/broadcast.json"
-  elseif lostWorldsMode() then
-    layouts["tracker"] = "lost_worlds/layouts/tracker.json"
-    layouts["broadcast"] = "lost_worlds/layouts/broadcast.json"
   elseif vanillaRandoMode() then
     layouts["tracker"] = "vanilla_rando/layouts/tracker.json"
     layouts["broadcast"] = "vanilla_rando/layouts/broadcast.json"

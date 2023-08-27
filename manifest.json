@@ -18,11 +18,11 @@
     "legacy_of_cyrus_items_only": {
       "display_name": "Item Tracker (Legacy Of Cyrus)"
     },
-    "lost_world_items": {
-      "display_name": "Item Tracker (Lost Worlds)"
-    },
     "lost_worlds": {
       "display_name": "Map Tracker (Lost Worlds)"
+    },
+    "lost_worlds_items_only": {
+      "display_name": "Item Tracker (Lost Worlds)"
     },
     "vanilla_rando": {
       "display_name": "Map Tracker (Vanilla Rando)"
