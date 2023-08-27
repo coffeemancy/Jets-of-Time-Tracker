@@ -55,52 +55,22 @@
           "h_alignment": "stretch",
           "content": [
             {
-              "type": "dock",
+              "type": "group",
+              "header": "Items",
               "dock": "left",
-              "content": [
-                {
-                  "type": "group",
-                  "header": "Items",
-                  "dock": "left",
-                  "content": {
-                    "type": "layout",
-                    "key": "items_grid"
-                  }
-                },
-                {
-                  "type": "group",
-                  "header": "Bosses",
-                  "dock": "left",
-                  "content": {
-                    "type": "layout",
-                    "key": "bosses_grid"
-                  }
-                }
-              ]
+              "content": {
+                "type": "layout",
+                "key": "items_grid"
+              }
             },
             {
-              "type": "dock",
+              "type": "group",
+              "header": "Bosses",
               "dock": "left",
-              "content": [
-                {
-                  "type": "group",
-                  "dock": "left",
-                  "header": "Flags",
-                  "content": {
-                    "type": "layout",
-                    "key": "flags_grid"
-                  }
-                },
-                {
-                  "type": "group",
-                  "dock": "left",
-                  "header": "Extra Flags",
-                  "content": {
-                    "type": "layout",
-                    "key": "extra_flags_grid"
-                  }
-                }
-              ]
+              "content": {
+                "type": "layout",
+                "key": "bosses_grid"
+              }
             }
           ]
         },
