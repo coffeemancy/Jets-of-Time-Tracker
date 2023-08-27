@@ -31,9 +31,6 @@ function addTrackerLayouts()
 
   if itemsOnlyTracking() then
     layouts["tracker"] = "items_only/layouts/tracker.json"
-  elseif vanillaRandoMode() then
-    layouts["tracker"] = "vanilla_rando/layouts/tracker.json"
-    layouts["broadcast"] = "vanilla_rando/layouts/broadcast.json"
   end
 
   for _, v in pairs(layouts) do Tracker:AddLayouts(v) end
