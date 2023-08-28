@@ -8,6 +8,7 @@ There are several workflows defined in `.github/workflows`:
 
 * `luacheck.yaml`: runs [`luacheck](https://luacheck.readthedocs.io/en/stable/) against .lua files
 * `jsontest.yaml`: runs this repos `tests/test_json.py` script against .json files with [`pytest`](https://pytest.org)
+* `shellcheck.yaml`: runs [`shellcheck`](https://github.com/koalaman/shellcheck) against .sh files
 
 It is intended that Pull Requests pass these checks before being merged and released, to
 assure a measure of stability and quality with this repo.
@@ -26,6 +27,25 @@ integration with PopTracker (or EmoTracker).
 
 Currently, strict validation is only used on items.json, manifest.json, and maps.json. Layouts
 and locations are using non-strict validation.
+
+### Tools
+
+The `tools/` directory has some useful scripts/tools for pack development.
+
+#### Generating flag images
+
+The `./tools/generate-flag-images.sh` script can be used to generate flag images using
+[ImageMagick](https://imagemagick.org/). This script requires ImageMagick is installed in order to work.
+It checks for the `magick` command at start.
+
+This tool is used to generate all of the flag/extra flag images used in the tracker from
+image templates. More information can be found by running:
+
+```bash
+./toosl/generate-flag-images.sh -h
+```
+
+This script is checked with `shellcheck` via github workflow.
 
 ## Releases
 

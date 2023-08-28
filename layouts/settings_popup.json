@@ -13,7 +13,14 @@
             "type": "array",
             "h_alignment": "center",
             "item_margin": "1,1",
-            "content": []
+            "content": [
+              {
+                "type": "item",
+                "item": "Flag_ToggleExtraItems_off",
+                "scale": 0.9,
+                "margin": "0,5"
+              }
+            ]
           }
         ]
       }
@@ -37,18 +44,15 @@
                 {
                   "title": "Flags",
                   "content": {
-                    "type": "array",
-                    "orientation": "horizontal",
-                    "content": [
-                      {
-                        "type": "layout",
-                        "key": "flags_grid"
-                      },
-                      {
-                        "type": "layout",
-                        "key": "extra_flags_grid"
-                      }
-                    ]
+                    "type": "layout",
+                    "key": "flags_grid"
+                  }
+                },
+                {
+                  "title": "Extras",
+                  "content": {
+                    "type": "layout",
+                    "key": "extra_flags_grid"
                   }
                 },
                 {

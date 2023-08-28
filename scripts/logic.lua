@@ -35,6 +35,12 @@ function vanillaRandoMode()
   return string.find(Tracker.ActiveVariantUID, "vanilla") ~= nil
 end
 
+-- Check if the tracker has a flag enabled
+function hasFlagEnabled(flag)
+  local code = "Flag_" .. flag .. "_on"
+  return Tracker:ProviderCountForCode(code) > 0
+end
+
 -- Check if the tracker variant is set to Items Only.
 function itemsOnlyTracking()
   return string.find(Tracker.ActiveVariantUID, "items_only") ~= nil
@@ -76,6 +82,18 @@ function canAccessSunkenDesert()
   local pendant = Tracker:FindObjectForCode("pendant").Active
   local gatekey = Tracker:FindObjectForCode("gatekey").Active
   return pendant or gatekey
+end
+
+function canAccessFactory()
+  if canFly() then
+    return true
+  end
+
+  if hasFlagEnabled("JohnnyRace") then
+    return Tracker:FindObjectForCode("bikekey").Active
+  end
+
+  return true
 end
 
 function canAccessGiantsClaw()
@@ -123,11 +141,16 @@ function canAccessNorthernRuins()
     return frog and magus and grandleon
   end
 
+  local tools = Tracker:FindObjectForCode("tools").Active
+
   if vanillaRandoMode() then
-    local tools = Tracker:FindObjectForCode("tools").Active
     local pendant = Tracker:FindObjectForCode("pendant").Active
     local gatekey = Tracker:FindObjectForCode("gatekey").Active
     return tools and (pendant or gatekey)
+  end
+
+  if hasFlagEnabled("RestoreTools") then
+    return tools
   end
 
   return grandleon

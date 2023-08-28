@@ -11,9 +11,22 @@ function addComponents()
   -- using paths relative to pack root directory
   local components = {}
   components["items_grid"] = "layouts/components/items_grid.json"
+  components["items_grid_extras"] = "layouts/components/items_grid_extras.json"
   components["bosses_grid"] = "layouts/components/bosses_grid.json"
   components["flags_grid"] = "layouts/components/flags_grid.json"
   components["extra_flags_grid"] = "layouts/components/extra_flags_grid.json"
+
+  -- Toggles extra items on when "Shoe Extra Items" is toggled on
+  function toggleExtraItems(_code)
+    if hasFlagEnabled("ToggleExtraItems") then
+      Tracker:AddLayouts(components["items_grid_extras"])
+    else
+      Tracker:AddLayouts(components["items_grid"])
+    end
+  end
+
+  -- Setup toggles in UI from Settings
+  ScriptHost:AddWatchForCode("ToggleExtraItems", "toggle_extra_items", toggleExtraItems)
 
   for _, v in pairs(components) do Tracker:AddLayouts(v) end
 

@@ -34,7 +34,7 @@
               },
               {
                 "type": "item",
-                "item": "Flag_Epoch_Fail_off",
+                "item": "Flag_EpochFail_off",
                 "scale": 0.9,
                 "margin": "0,5"
               }
