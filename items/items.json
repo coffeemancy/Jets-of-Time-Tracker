@@ -339,16 +339,18 @@
     "name": "Character Locks",
     "type": "progressive",
     "allow_disabled": false,
-    "initial_stage_idx": 1,
+    "initial_stage_idx": 0,
     "loop": true,
     "stages": [
       {
-        "img": "images/flags/Flag_CharLock_on.png",
-        "codes": "Flag_CharLock_on"
+        "img": "images/flags/Flag_CharLock_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_CharLock_off"
       },
       {
-        "img": "images/flags/Flag_CharLock_off.png",
-        "codes": "Flag_CharLock_off"
+        "img": "images/flags/Flag_CharLock_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_CharLock_on"
       }
     ]
   },
@@ -361,10 +363,12 @@
     "stages": [
       {
         "img": "images/flags/Flag_EarlyPendant_off.png",
+        "inherit_codes": false,
         "codes": "Flag_EarlyPendant_off"
       },
       {
         "img": "images/flags/Flag_EarlyPendant_on.png",
+        "inherit_codes": false,
         "codes": "Flag_EarlyPendant_on, earlypendant"
       }
     ]
@@ -378,10 +382,12 @@
     "stages": [
       {
         "img": "images/flags/Flag_Chronosanity_off.png",
+        "inherit_codes": false,
         "codes": "Flag_Chronosanity_off"
       },
       {
         "img": "images/flags/Flag_Chronosanity_on.png",
+        "inherit_codes": false,
         "codes": "Flag_Chronosanity_on, chronosanity"
       }
     ]
@@ -395,10 +401,12 @@
     "stages": [
       {
         "img": "images/flags/Flag_EpochFail_off.png",
+        "inherit_codes": false,
         "codes": "Flag_EpochFail_off"
       },
       {
         "img": "images/flags/Flag_EpochFail_on.png",
+        "inherit_codes": false,
         "codes": "Flag_EpochFail_on, epochfail"
       }
     ]
