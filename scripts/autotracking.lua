@@ -16,7 +16,8 @@ print("")
 --
 -- Script variables
 --
-CHECK_COUNTERS = {chests = 0, sealed_chests = 0, base_checks = 0}
+CHECK_COUNTERS = {chests = 0, sealed_chests = 0, base_checks = 0, rocks = 0}
+ROCK_COUNTERS = {equipment = 0, inventory = 0}
 
 --
 -- Invoked when the auto-tracker is activated/connected
@@ -368,18 +369,25 @@ KEY_ITEMS = {
   {value=0xE3, name="tomapop", callback=handleItemTurnin, address=0x7F01A3, flag=0x80},
   {value=0xE9, name="jetsoftime", callback=handleItemTurnin, address=0x7F00BA, flag=0x80},
   {value=0xD4, name="arrisseed", callback=handleItemTurnin, address=0x7F00A4, flag=0x01},
-  {value=0xD5, name="bikekey"}
+  {value=0xD5, name="bikekey"},
+
+  -- rocks
+  {value=0xAE, name="blackrock", rock=true, equipable=true, offset=0x2A},
+  {value=0xAF, name="bluerock", rock=true, equipable=true, offset=0x2A},
+  {value=0xB0, name="silverrock", rock=true, equipable=true, offset=0x2A},
+  {value=0xB1, name="whiterock", rock=true, equipable=true, offset=0x2A},
+  {value=0xB2, name="goldrock", rock=true, equipable=true, offset=0x2A}
 }
 
 --
 -- Update key items based on if found in inventory or equipped.
 function updateKeyItems()
 
-  -- Loop the key items and toggle them based on whether or not they were found
+  -- Loop the non-rock key items and toggle them based on whether or not they were found
   for _,v in pairs(KEY_ITEMS) do
     if v.callback then
       v.callback(v)
-    else
+    elseif not v.rock then
       local trackerItem = Tracker:FindObjectForCode(v.name)
       if trackerItem and not trackerItem.Owner.ModifiedByUser then
         trackerItem.Active = v.found or v.equipped
@@ -429,6 +437,20 @@ function updateItemsFromEquipment(segment)
 
   updateKeyItems()
 
+  if hasFlagEnabled("Rocksanity") then
+    -- reset equipped rock count to 0
+    ROCK_COUNTERS.equipment = 0
+
+    -- count equipped rocks
+    for _,v in pairs(KEY_ITEMS) do
+      if v.rock and v.equipped then
+        ROCK_COUNTERS.equipment = ROCK_COUNTERS.equipment + 1
+      end
+    end
+
+    updateRockCount()
+  end
+
 end
 
 --
@@ -476,6 +498,20 @@ function updateItemsFromInventory(segment)
   end -- end inventory loop
 
   updateKeyItems()
+
+  if hasFlagEnabled("Rocksanity") then
+    -- reset rock inventory count to 0
+    ROCK_COUNTERS.inventory = 0
+
+    -- count rocks found in inventory
+    for _,v in pairs(KEY_ITEMS) do
+      if v.rock and v.found then
+        ROCK_COUNTERS.inventory = ROCK_COUNTERS.inventory + 1
+      end
+    end
+
+    updateRockCount()
+  end
 
 end
 
@@ -597,6 +633,14 @@ function updateEventsAndBosses(segment)
       end
       if hasFlagEnabled("OzzieFortSpot") then
         keyItemChecksDone = keyItemChecksDone + updateEvent("@Ozzie's Fort/Defeat Ozzie", segment, 0x7F01A1, 0x80)
+      end
+
+      -- Checks specific to Rocksanity
+      if hasFlagEnabled("Rocksanity") then
+        -- TODO: these addresses or flag bits don't seem to be quite right
+        updateEvent("@Denadoro Mts/Rock", segment, 0x7F00F7, 0x02)
+        updateEvent("@Laruba Village/Rock", segment, 0x7F01AC, 0x10)
+        updateEvent("@Kajar/Rock", segment, 0x7F00F4, 0x0)
       end
     end
 
@@ -757,7 +801,25 @@ end
 function updateCollectionCount()
 
   local counter = Tracker:FindObjectForCode("checkcounter")
-  counter.AcquiredCount = CHECK_COUNTERS.chests + CHECK_COUNTERS.sealed_chests + CHECK_COUNTERS.base_checks
+  totalChecks = CHECK_COUNTERS.chests + CHECK_COUNTERS.sealed_chests + CHECK_COUNTERS.base_checks
+
+  -- add rocks if Rocksanity
+  if hasFlagEnabled("Rocksanity") then
+    totalChecks = totalChecks + CHECK_COUNTERS.rocks
+  end
+
+  counter.AcquiredCount = totalChecks
+
+end
+
+--
+-- Update the total rock count from inventory and equipment.
+-- This updates the rock counter on the tracker.
+--
+function updateRockCount()
+
+  local counter = Tracker:FindObjectForCode("rockcounter")
+  counter.AcquiredCount = ROCK_COUNTERS.equipment + ROCK_COUNTERS.inventory
 
 end
 
@@ -1110,6 +1172,9 @@ function updateChests(segment)
       {0x03, 0x02}  -- Kino's Cell
     }
   }
+  if hasFlagEnabled("Rocksanity") then
+    chests["Rock"] = {0x0B, 0x40}
+  end
   chestsOpened = chestsOpened + handleChests(segment, "@Giant's Claw/", chests)
 
   -- Ozzie's Fort
