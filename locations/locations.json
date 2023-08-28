@@ -138,7 +138,14 @@
 							{
 								"name": "Charge the Moonstone",
 								"hosted_item": "sunstone",
-                "visibility_rules": ["$couldAccessSunKeep"]
+								"visibility_rules": ["$couldAccessSunKeep, $useVanillaSunKeep"]
+							},
+							{
+								"name": "Charge Moonstone",
+								"visibility_rules": ["$couldAccessSunKeep, Flag_SunKeepSpot_on"],
+								"chest_unopened_img": "images/kino.png",
+								"chest_opened_img": "images/kiyes.png",
+								"item_count": 1
 							}
 						],
 						"map_locations":

@@ -222,22 +222,35 @@ function handleMelchiorRefinements(segment)
 end
 
 --
+-- Check if moonstone has been left at Sun Keep to charge.
+--
+function isMoonstoneCharging()
+
+  local moonstoneState = AutoTracker:ReadU8(0x7F013A, 0)
+  return ((moonstoneState & 0x04) ~= 0 and (moonstoneState & 0x40) == 0)
+
+end
+
+--
 -- Handle the moonstone/sunstone.
 -- This is a progressive item and is handled differently
 -- from the other key items.
 --
 function handleMoonstone(keyItem)
 
+  -- With Sun Keep Spot extra, can have both moonstone and sunstone
+  if hasFlagEnabled("SunKeepSpot") then
+    return handleSeparateMoonstoneSunstone()
+  end
+
   moonstone = Tracker:FindObjectForCode("moonstone")
   currentStage = moonstone.CurrentStage
 
   -- Special handling for when the moonstone has been left in sun keep
   -- but hasn't been picked up yet.
-  local moonstoneState = AutoTracker:ReadU8(0x7F013A, 0)
-  if ((moonstoneState & 0x04) ~= 0 and
-      (moonstoneState & 0x40) == 0) then
+  if isMoonstoneCharging() then
     -- Moonstone was dropped off but not picked up
-    -- Set moonstone active on the tracker so it doens't get cleared
+    -- Set moonstone active on the tracker so it doesn't get cleared
     moonstone.CurrentStage = 1
     return
   end
@@ -256,6 +269,46 @@ function handleMoonstone(keyItem)
     elseif currentStage == 2 then
       moonstone.CurrentStage = 0
     end
+  end
+
+end
+
+--
+-- Handle the moonstone/sunstone when extra Sun Keep spot is added.
+-- This treats moonstone and sunstone as separate Key Items.
+--
+function handleSeparateMoonstoneSunstone()
+
+  local moonstone=nil
+  local sunstone=nil
+
+  for _,v in pairs(KEY_ITEMS) do
+    if v.name == "moonstone" then
+      moonstone = v
+    elseif v.name == "sunstone" then
+      sunstone = v
+    end
+    if moonstone and sunstone then
+      break
+    end
+  end
+
+  -- treat moonstone found if in inventory, is currently charging,
+  -- or the "Charge Moonstone" was completed
+  moonstoneFound =
+    moonstone.found or
+    isMoonstoneCharging() or
+    Tracker:FindObjectForCode("@Sun Keep/Charge Moonstone").AvailableChestCount == 0
+
+  trackerItem = Tracker:FindObjectForCode("moonstone")
+  if moonstoneFound and sunstone.found then
+    trackerItem.CurrentStage = 3
+  elseif sunstone.found then
+    trackerItem.CurrentStage = 2
+  elseif moonstoneFound then
+    trackerItem.CurrentStage = 1
+  else
+    trackerItem.CurrentStage = 0
   end
 
 end
@@ -507,7 +560,11 @@ function updateEventsAndBosses(segment)
     -- Don't check these events in Lost Worlds mode, they don't exist.
     if not lostWorldsMode() then
       -- Moonstone is the only prehistory event that is not part of the Lost Worlds mode.
-      updateEvent("@Sun Keep/Charge the Moonstone", segment, 0x7F013A, 0x40)
+      if hasFlagEnabled("SunKeepSpot") then
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Sun Keep/Charge Moonstone", segment, 0x7F013A, 0x40)
+      else
+        updateEvent("@Sun Keep/Charge the Moonstone", segment, 0x7F013A, 0x40)
+      end
 
       -- Middle Ages
       updateEvent("@Manoria Cathedral/Saved by Frog", segment, 0x7F0100, 0x01)
