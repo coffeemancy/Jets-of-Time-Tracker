@@ -29,7 +29,7 @@ FLAGS=(
   "Johnny Race" "JohnnyRace" 16
   "Locked Chars" "CharLock" 16
   "Ozzie\'s Fort Spot" "OzzieFortSpot" 12
-  # "Race Log Spot" "RaceLogSpot" 12
+  "Race Log Spot" "RaceLogSpot" 12
   "Restore Tools" "RestoreTools" 16
   # "Rocksanity" "Rocksanity" 16
   # "Split Arris Dome" "SplitArrisDome" 12

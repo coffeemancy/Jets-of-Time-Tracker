@@ -1722,6 +1722,14 @@
 						"sections":
 						[
 							{
+								"name": "Race Log",
+								"visibility_rules": ["Flag_RaceLogSpot_on"],
+								"access_rules": ["Flag_JohnnyRace_off", "bikekey"],
+								"chest_unopened_img": "images/kino.png",
+								"chest_opened_img": "images/kiyes.png",
+								"item_count": 1
+							},
+							{
 								"name": "Chests",
                 "visibility_rules": ["chronosanity"],
 								"chest_unopened_img": "images/kino.png",

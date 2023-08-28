@@ -43,6 +43,12 @@
                 "item": "Flag_OzzieFortSpot_off",
                 "scale": 0.9,
                 "margin": "0,3"
+              },
+              {
+                "type": "item",
+                "item": "Flag_RaceLogSpot_off",
+                "scale": 0.9,
+                "margin": "0,3"
               }
             ]
           }

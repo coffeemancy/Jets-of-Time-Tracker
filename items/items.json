@@ -507,6 +507,25 @@
     ]
   },
   {
+    "name": "Race Log Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_RaceLogSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_RaceLogSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_RaceLogSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_RaceLogSpot_on"
+      }
+    ]
+  },
+  {
     "name": "Toggle Extra Items",
     "type": "progressive",
     "allow_disabled": false,

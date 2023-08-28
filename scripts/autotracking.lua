@@ -1216,6 +1216,9 @@ function updateChests(segment)
       {0x0E, 0x80}
     }
   }
+  if hasFlagEnabled("RaceLogSpot") then
+    chests["Race Log"] = {{0x0F, 0x01}}
+  end
   chestsOpened = chestsOpened + handleChests(segment, "@Lab32/", chests)
 
   -- Geno Dome
