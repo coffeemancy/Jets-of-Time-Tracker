@@ -187,10 +187,15 @@ function couldAccessSunKeep()
 end
 
 function canFly()
-  local epochfail = Tracker:ProviderCountForCode("epochfail") > 0
-  local fixedepoch = Tracker:FindObjectForCode("fixedepoch").Active
+  if not hasFlagEnabled("EpochFail") then
+    return true
+  end
 
-  return (not epochfail) or fixedepoch
+  return Tracker:FindObjectForCode("fixedepoch").Active
+end
+
+function useLegacyEpochFail()
+  return hasFlagEnabled("EpochFail") and not hasFlagEnabled("UnlockedSkyways")
 end
 
 function useVanillaSunKeep()

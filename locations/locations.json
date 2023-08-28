@@ -286,6 +286,32 @@
 								"y": 1675
 							}
 						]
+					},
+					{
+						"name": "Blackbird",
+						"access_rules": ["unlockedskyways", "blacktyranoboss", "magusboss"],
+						"sections":
+						[
+							{
+								"name": "Attach Epoch Wings",
+								"visibility_rules": ["epochfail"],
+								"access_rules": ["jetsoftime"],
+								"hosted_item": "fixedepoch"
+							}
+						],
+						"map_locations":
+						[
+							{
+								"map": "Dark Ages",
+								"x": 1175,
+								"y": 817
+							},
+							{
+								"map": "All Eras",
+								"x": 1175,
+								"y": 1840
+							}
+						]
 					}
 				]
 			},
@@ -1053,7 +1079,7 @@
 							},
               {
                 "name": "Attach Epoch Wings",
-                "visibility_rules": ["epochfail"],
+                "visibility_rules": ["$useLegacyEpochFail"],
                 "access_rules":["jetsoftime"],
 								"hosted_item": "fixedepoch"
               }

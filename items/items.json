@@ -415,6 +415,25 @@
     ]
   },
   {
+    "name": "Unlocked Skyways",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_UnlockedSkyways_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_UnlockedSkyways_off"
+      },
+      {
+        "img": "images/flags/Flag_UnlockedSkyways_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_UnlockedSkyways_on, unlockedskyways"
+      }
+    ]
+  },
+  {
     "name": "Johnny Race",
     "type": "progressive",
     "allow_disabled": false,
