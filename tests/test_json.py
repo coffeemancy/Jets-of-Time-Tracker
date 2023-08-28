@@ -30,7 +30,6 @@ def formatted_jsonfiles(jsonfiles) -> List[Path]:
     # exclude older paths and gradually update to new formatting
     # to avoid having large git diffs
     excluded_paths = [
-        'items/',
         'locations/',
     ]
     return [
