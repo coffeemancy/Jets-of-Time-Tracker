@@ -90,10 +90,25 @@ function handleGoMode()
       Tracker:FindObjectForCode("@Dactyl Nest/Friend to the Dactyls").AvailableChestCount == 0
     goMode = ayla and dactylChar and gateKey and dreamStone
   else
+    local magusGoMode = frog and hilt and blade
+
+    -- Bucket list currently only supports Standard and Vanilla Rando
+    -- Below presumes need to take Bucket at End of Time to complete
+    local bucketGoMode = false
+    if hasFlagEnabled("BucketList") then
+      local couldAccessEndOfTime = gateKey or canAccessFactory() or magusGoMode
+      bucketGoMode = couldAccessEndOfTime and metObjectives()
+
+      if hasFlagEnabled("BucketDisableOtherGo") then
+        return bucketGoMode
+      end
+    end
+
     goMode =
       (gateKey and dreamStone and rubyKnife) or -- 65 million BC -> 12000 BC -> Ocean Palace
-      (frog and hilt and blade) or -- Magus' Castle -> 12000 BC -> Ocean Palace
-      (pendant and cTrigger and clone) -- Death Peak -> Black Omen
+      magusGoMode or-- Magus' Castle -> 12000 BC -> Ocean Palace
+      (pendant and cTrigger and clone) or -- Death Peak -> Black Omen
+      bucketGoMode -- Bucket List
   end
   local goButton = Tracker:FindObjectForCode("gomode")
   goButton.Active = goMode
@@ -475,26 +490,31 @@ function updateItemsFromInventory(segment)
   end
 
   -- Loop through the inventory, determine which key items the player has found
+  local objectives = 0
   for i=0,0xF1 do
     local item = segment:ReadUInt8(0x7E2400 + i)
     -- Loop through the table of key items and see if the current
     -- inventory slot maches any of them
-    for _,v in pairs(KEY_ITEMS) do
-      if type(v.value) == "number" then
-        if item == v.value then
-          v.found = true
-        end
-      elseif type(v.value) == "table" then
-        -- Loop through possible IDs for items with more than one
-        -- Not used since the Masamume/Grand Leon change, but leaving this in
-        -- in case it's needed in the future.
-        for _, v2 in pairs(v.value) do
-          if item == v2 then
+    if item == 0x1B then
+      objectives = objectives + 1
+    else
+      for _,v in pairs(KEY_ITEMS) do
+        if type(v.value) == "number" then
+          if item == v.value then
             v.found = true
           end
+        elseif type(v.value) == "table" then
+          -- Loop through possible IDs for items with more than one
+          -- Not used since the Masamume/Grand Leon change, but leaving this in
+          -- in case it's needed in the future.
+          for _, v2 in pairs(v.value) do
+            if item == v2 then
+              v.found = true
+            end
+          end
         end
-      end
-    end -- end key item loop
+      end -- end key item loop
+    end
   end -- end inventory loop
 
   updateKeyItems()
@@ -511,6 +531,16 @@ function updateItemsFromInventory(segment)
     end
 
     updateRockCount()
+  end
+
+  if hasFlagEnabled("BucketList") then
+    local countdown = Tracker:FindObjectForCode("objcountdown")
+    countdown.AcquiredCount = objectives
+
+    -- all objectives met, check go mode
+    if objectives == 0 then
+      handleGoMode()
+    end
   end
 
 end

@@ -198,6 +198,15 @@ function canFly()
   return Tracker:FindObjectForCode("fixedepoch").Active
 end
 
+function metObjectives()
+  if not hasFlagEnabled("BucketList") then
+    return false
+  end
+
+  local countdown = Tracker:FindObjectForCode("objcountdown")
+  return (countdown.AcquiredCount == 0)
+end
+
 function useLegacyEpochFail()
   return hasFlagEnabled("EpochFail") and not hasFlagEnabled("UnlockedSkyways")
 end
