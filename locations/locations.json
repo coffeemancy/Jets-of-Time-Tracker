@@ -1873,7 +1873,8 @@
 			{
 				"name": "End Of Time",
 				"color": "#482828",
-				"access_rules": ["$notLostWorldsMode", "gatekey", "rseriesboss", "magusboss"],
+				"access_rules": ["$canAccessEndOfTime"],
+        "visibility_rules": ["$notLostWorldsMode"],
 				"children":
 				[
 					{

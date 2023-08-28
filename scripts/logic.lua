@@ -47,18 +47,22 @@ function itemsOnlyTracking()
 end
 
 function canAccessDarkAges()
-  if lostWorldsMode() then
-    return true
-  end
-
   if iceAgeMode() then
     return Tracker:FindObjectForCode("blacktyranoboss").Active
   end
 
-  local gateKey = Tracker:FindObjectForCode("gatekey").Active
+  return canAccessEndOfTime()
+end
+
+function canAccessEndOfTime()
+  if lostWorldsMode() then
+    return false
+  end
+
+  local gatekey = Tracker:FindObjectForCode("gatekey").Active
   local magusboss = Tracker:FindObjectForCode("magusboss").Active
   local rseriesboss = Tracker:FindObjectForCode("rseriesboss").Active
-  return gateKey or rseriesboss or magusboss
+  return gatekey or rseriesboss or magusboss
 end
 
 function canAccessSealed()
