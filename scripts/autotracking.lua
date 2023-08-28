@@ -319,6 +319,7 @@ KEY_ITEMS = {
   {value=0xE2, name="clone"},
   {value=0xE3, name="tomapop", callback=handleItemTurnin, address=0x7F01A3, flag=0x80},
   {value=0xE9, name="jetsoftime", callback=handleItemTurnin, address=0x7F00BA, flag=0x80},
+  {value=0xD4, name="arrisseed", callback=handleItemTurnin, address=0x7F00A4, flag=0x01},
   {value=0xD5, name="bikekey"}
 }
 
@@ -549,7 +550,12 @@ function updateEventsAndBosses(segment)
 
     -- Future
     updateEvent("@Proto Dome/Fix Robo", segment, 0x7F00F3, 0x02)
-    keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Activate the Computer", segment, 0x7F00A4, 0x01)
+    if hasFlagEnabled("SplitArrisDome") then
+      keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Trade the Seed", segment, 0x7F00A4, 0x01)
+      keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Food Locker", segment, 0x7F00A4, 0x02)
+    else
+      keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Activate the Computer", segment, 0x7F00A4, 0x01)
+    end
     keyItemChecksDone = keyItemChecksDone + updateEvent("@Sun Palace/Moon Stone", segment, 0x7F013A, 0x02) -- same as Son of Sun
     keyItemChecksDone = keyItemChecksDone + updateEvent("@Geno Dome/Defeat Mother Brain", segment, 0x7F013B, 0x10) -- Same as Mother Brain
   end -- end event tracking

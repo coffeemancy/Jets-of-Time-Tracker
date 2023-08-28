@@ -450,6 +450,25 @@
     ]
   },
   {
+    "name": "Split Arris Dome",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_SplitArrisDome_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_SplitArrisDome_off"
+      },
+      {
+        "img": "images/flags/Flag_SplitArrisDome_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_SplitArrisDome_on"
+      }
+    ]
+  },
+  {
     "name": "Bekkler Spot",
     "type": "progressive",
     "allow_disabled": false,
@@ -543,6 +562,13 @@
         "codes": "Flag_ToggleExtraItems_on, toggle_extra_items"
       }
     ]
+  },
+  {
+    "name": "Arris Seed",
+    "type": "toggle",
+    "loop": "true",
+    "img": "images/arrisseed.png",
+    "codes": "arrisseed"
   },
   {
     "name": "Bike Key",
