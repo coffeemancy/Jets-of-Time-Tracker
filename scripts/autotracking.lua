@@ -672,10 +672,9 @@ function updateEventsAndBosses(segment)
 
       -- Checks specific to Rocksanity
       if hasFlagEnabled("Rocksanity") then
-        -- TODO: these addresses or flag bits don't seem to be quite right
-        updateEvent("@Denadoro Mts/Rock", segment, 0x7F00F7, 0x02)
-        updateEvent("@Laruba Village/Rock", segment, 0x7F01AC, 0x10)
-        updateEvent("@Kajar/Rock", segment, 0x7F00F4, 0x0)
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Denadoro Mts/Rock", segment, 0x7F00F7, 0x08)
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Laruba Village/Rock", segment, 0x7F01AC, 0x20)
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Kajar/Rock", segment, 0x7F00F4, 0x20)
       end
     end
 
@@ -1208,7 +1207,7 @@ function updateChests(segment)
     }
   }
   if hasFlagEnabled("Rocksanity") then
-    chests["Rock"] = {0x0B, 0x40}
+    chests["Rock"] = {{0x0B, 0x40}}
   end
   chestsOpened = chestsOpened + handleChests(segment, "@Giant's Claw/", chests)
 
