@@ -26,11 +26,11 @@ FLAGS=(
   "Cyrus Grave Spot" "CyrusGraveSpot" 12
   "Early Pendant" "EarlyPendant" 16
   "Epoch Fail" "EpochFail" 16
-  # "Johnny Race" "JohnnyRace" 16
+  "Johnny Race" "JohnnyRace" 16
   "Locked Chars" "CharLock" 16
   "Ozzie\'s Fort Spot" "OzzieFortSpot" 12
   # "Race Log Spot" "RaceLogSpot" 12
-  # "Restore Tools" "RestoreTools" 16
+  "Restore Tools" "RestoreTools" 16
   # "Rocksanity" "Rocksanity" 16
   # "Split Arris Dome" "SplitArrisDome" 12
   # "Sun Keep Spot" "SunKeepSpot" 14

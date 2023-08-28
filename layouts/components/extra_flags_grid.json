@@ -16,6 +16,18 @@
             "content": [
               {
                 "type": "item",
+                "item": "Flag_JohnnyRace_off",
+                "scale": 0.9,
+                "margin": "0,3"
+              },
+              {
+                "type": "item",
+                "item": "Flag_RestoreTools_off",
+                "scale": 0.9,
+                "margin": "0,3"
+              },
+              {
+                "type": "item",
                 "item": "Flag_BekklerSpot_off",
                 "scale": 0.9,
                 "margin": "0,3"

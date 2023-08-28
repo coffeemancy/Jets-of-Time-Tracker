@@ -412,6 +412,44 @@
     ]
   },
   {
+    "name": "Johnny Race",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_JohnnyRace_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_JohnnyRace_off"
+      },
+      {
+        "img": "images/flags/Flag_JohnnyRace_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_JohnnyRace_on, johnnyrace"
+      }
+    ]
+  },
+  {
+    "name": "Restore Tools",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_RestoreTools_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_RestoreTools_off"
+      },
+      {
+        "img": "images/flags/Flag_RestoreTools_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_RestoreTools_on"
+      }
+    ]
+  },
+  {
     "name": "Bekkler Spot",
     "type": "progressive",
     "allow_disabled": false,
@@ -486,6 +524,13 @@
         "codes": "Flag_ToggleExtraItems_on, toggle_extra_items"
       }
     ]
+  },
+  {
+    "name": "Bike Key",
+    "type": "toggle",
+    "loop": "true",
+    "img": "images/bikekey.png",
+    "codes": "bikekey"
   },
   {
     "name": "Jerky Item",
