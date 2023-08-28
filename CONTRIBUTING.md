@@ -1,39 +1,5 @@
 # Contributing to Jets-of-Time Tracker
 
-## Tools
-
-The `tools` directory has tools for building/modifying/verifying pack assets.
-
-### Map Location Normalization
-
-The `tools/normalize-locations.py` tool can be used to normalize all map locations (e.g. in
-`locations/locations.json`). This makes sure that each era-relative map location has
-corresponding absolute coordinates which are offset relative to that era (e.g. a map
-location for "Future" has a corresponding coordinate for "All Eras" with (x, y)
-coordinates offset the appropriate amount).
-
-Usage details can be found by running `./tools/normalize-locations.py --help`.
-
-A typical use-case is updating locations (adding new spots), then running the tool to
-automatically add the "All Eras" coordinates, overwriting the locations file:
-
-```bash
-./tools/normalize-locations.py -xi locations/locations.json
-```
-
-### Release Automation
-
-The `tools/release.sh` tool can be used to build a zip file suitable for PopTracker/EmoTracker.
-
-It builds a zip file which follows the exclusion rules per `.gitattributes` (like how
-`git archive` does), however, it also dereferences all symlinks, making copies of their linked
-files. It verifies the created artifact is a valid zip file.
-
-By default, it creates a zip file containing the short hash reference of the git ref it was
-built from. For release candidates and releases, a specific output file name can be specified.
-
-Usage details can be found by running `./tools/release.sh -h`.
-
 ## Development
 
 For development, it is recommended to install python (3.11+) and lua with your system package manager.
@@ -45,15 +11,16 @@ with test dependencies installed via:
 pip install -r tests/requirements.txt
 ```
 
-Changes should be verified on both PopTracker and EmoTracker.
+Changes should be verified on both PopTracker and EmoTracker where applicable.
 
 ### Github Workflow
 
 There are several workflows defined in `.github/workflows`:
 
+* `lint-python.yaml`: runs [`flake8`](https://flake8.pycqa.org) against .py files
 * `luacheck.yaml`: runs [`luacheck`](https://luacheck.readthedocs.io/en/stable/) against .lua files
 * `jsontest.yaml`: runs [`pytest`](https://pytest.org) on tests in `tests/json/` against .json files
-* `lint-python.yaml`: runs [`flake8`](https://flake8.pycqa.org) against .py files
+* `shellcheck.yaml`: runs [`shellcheck`](https://github.com/koalaman/shellcheck) against .sh files
 * `build-release.yaml`: builds a release zip using `tools/release.sh`
 
 It is intended that Pull Requests pass these checks before being merged and released, to
@@ -127,3 +94,52 @@ git archive HEAD --format=zip CT_JoT_Tracker.zip
 
 This zip file should be usable by both PopTracker and EmoTracker. (NOTE: `git archive` only
 includes committed files, so any non-commited changes will not be included).
+
+## Tools
+
+The `tools` directory has tools for building/modifying/verifying pack assets.
+
+### Generating flag images
+
+The `./tools/generate-flag-images.sh` script can be used to generate flag images using
+[ImageMagick](https://imagemagick.org/). This script requires ImageMagick is installed in order to work.
+It checks for the `magick` command at start.
+
+This tool is used to generate all of the flag/extra flag images used in the tracker from
+image templates. More information can be found by running:
+
+```bash
+./toosl/generate-flag-images.sh -h
+```
+
+This script is checked with `shellcheck` via github workflow.
+
+### Map Location Normalization
+
+The `tools/normalize-locations.py` tool can be used to normalize all map locations (e.g. in
+`locations/locations.json`). This makes sure that each era-relative map location has
+corresponding absolute coordinates which are offset relative to that era (e.g. a map
+location for "Future" has a corresponding coordinate for "All Eras" with (x, y)
+coordinates offset the appropriate amount).
+
+Usage details can be found by running `./tools/normalize-locations.py --help`.
+
+A typical use-case is updating locations (adding new spots), then running the tool to
+automatically add the "All Eras" coordinates, overwriting the locations file:
+
+```bash
+./tools/normalize-locations.py -xi locations/locations.json
+```
+
+### Release Automation
+
+The `tools/release.sh` tool can be used to build a zip file suitable for PopTracker/EmoTracker.
+
+It builds a zip file which follows the exclusion rules per `.gitattributes` (like how
+`git archive` does), however, it also dereferences all symlinks, making copies of their linked
+files. It verifies the created artifact is a valid zip file.
+
+By default, it creates a zip file containing the short hash reference of the git ref it was
+built from. For release candidates and releases, a specific output file name can be specified.
+
+Usage details can be found by running `./tools/release.sh -h`.
