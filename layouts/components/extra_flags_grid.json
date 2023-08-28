@@ -13,7 +13,26 @@
             "type": "array",
             "h_alignment": "center",
             "item_margin": "1,1",
-            "content": []
+            "content": [
+              {
+                "type": "item",
+                "item": "Flag_BekklerSpot_off",
+                "scale": 0.9,
+                "margin": "0,3"
+              },
+              {
+                "type": "item",
+                "item": "Flag_CyrusGraveSpot_off",
+                "scale": 0.9,
+                "margin": "0,3"
+              },
+              {
+                "type": "item",
+                "item": "Flag_OzzieFortSpot_off",
+                "scale": 0.9,
+                "margin": "0,3"
+              }
+            ]
           }
         ]
       }

@@ -4,6 +4,7 @@ v2.2.0
   - Componentize layouts using re-usable components for items, bosses, flags
   - Add support for Ice Age mode
   - Implement and use script to generate flag images
+  - Add support for extra spots: Bekkler, Cyrus Grave, Ozzie's Fort
 
 v2.1.1
   - Removed embedded .zip file, moved to using Releases from Github

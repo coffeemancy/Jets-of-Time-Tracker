@@ -44,18 +44,15 @@
                 {
                   "title": "Flags",
                   "content": {
-                    "type": "array",
-                    "orientation": "horizontal",
-                    "content": [
-                      {
-                        "type": "layout",
-                        "key": "flags_grid"
-                      },
-                      {
-                        "type": "layout",
-                        "key": "extra_flags_grid"
-                      }
-                    ]
+                    "type": "layout",
+                    "key": "flags_grid"
+                  }
+                },
+                {
+                  "title": "Extras",
+                  "content": {
+                    "type": "layout",
+                    "key": "extra_flags_grid"
                   }
                 },
                 {

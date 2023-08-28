@@ -100,7 +100,11 @@ def poptracker_strict_schemas() -> Dict[str, Dict[str, Any]]:
 def test_all_jsonfiles_loadable(jsonfiles):
     '''Check all files are loadable as JSON.'''
     for jsonfile in jsonfiles:
-        assert json.load(jsonfile.open())
+        try:
+            assert json.load(jsonfile.open())
+        except Exception as ex:
+            err = f'Failed to load as valid JSON: {jsonfile}'
+            raise ValueError(err) from ex
 
 @pytest.mark.parametrize('pack_type', POPTRACKER_PACK_TYPES)
 def test_pack_schema_validation(pack_type, poptracker_schemas, pack_files):

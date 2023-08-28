@@ -412,6 +412,63 @@
     ]
   },
   {
+    "name": "Bekkler Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_BekklerSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_BekklerSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_BekklerSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_BekklerSpot_on"
+      }
+    ]
+  },
+  {
+    "name": "Cyrus Grave Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_CyrusGraveSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_CyrusGraveSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_CyrusGraveSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_CyrusGraveSpot_on"
+      }
+    ]
+  },
+  {
+    "name": "Ozzie's Fort Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_OzzieFortSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_OzzieFortSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_OzzieFortSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_OzzieFortSpot_on"
+      }
+    ]
+  },
+  {
     "name": "Toggle Extra Items",
     "type": "progressive",
     "allow_disabled": false,

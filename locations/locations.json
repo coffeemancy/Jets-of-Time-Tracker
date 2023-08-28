@@ -263,7 +263,7 @@
 							{
 								"name": "Golem",
 								"hosted_item": "golemboss",
-                "visibility_rules": ["$couldAccessOceanPalace"]
+								"visibility_rules": ["$couldAccessOceanPalace"]
 							}
 						],
 						"map_locations":
@@ -286,6 +286,7 @@
 				"name": "Middle Ages",
 				"color": "#306848",
 				"access_rules": ["$notLostWorldsMode"],
+				"visibility_rules": ["$notLostWorldsMode"],
 				"children":
 				[
 					{
@@ -769,6 +770,13 @@
                 "hosted_item": "ozzie"
               },
               {
+                "name": "Defeat Ozzie",
+                "visibility_rules": ["$notLegacyOfCyrusMode,Flag_OzzieFortSpot_on"],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
+              },
+              {
                 "name": "Front Half",
                 "visibility_rules": ["chronosanity"],
                 "chest_unopened_img": "images/kino.png",
@@ -858,12 +866,14 @@
 						[
               {
                 "name": "Cyrus Grave (LoC)",
+                "access_rules": ["grandleon"],
                 "visibility_rules": ["$legacyOfCyrusMode"],
                 "hosted_item": "cyrusgrave"
               },
               {
                 "name": "Cyrus Grave",
-                "visibility_rules": ["$vanillaRandoMode"],
+                "access_rules": ["grandleon"],
+                "visibility_rules": ["$vanillaRandoMode", "$notLegacyOfCyrusMode,Flag_CyrusGraveSpot_on"],
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
                 "item_count": 1
@@ -930,6 +940,7 @@
 				"name": "Present",
 				"color": "#609040",
 				"access_rules": ["$notLostWorldsMode"],
+				"visibility_rules": ["$notLostWorldsMode"],
 				"children":
 				[
 					{
@@ -1361,7 +1372,7 @@
           {
             "name": "Norstein Bekkler's Tent of Horrors",
             "access_rules": ["ctrigger"],
-            "visibility_rules": ["$vanillaRandoMode"],
+            "visibility_rules": ["$vanillaRandoMode", "Flag_BekklerSpot_on"],
             "sections":
             [
               {
@@ -1440,7 +1451,7 @@
 					},
 					{
 						"name": "Proto Dome",
-						"access_rules":["Flag_CharLock_on,rseriesboss", "Flag_CharLock_off"],
+						"access_rules": ["$canAccessFactory,Flag_CharLock_on,rseriesboss", "$canAccessFactory,Flag_CharLock_off"],
 						"sections":
 						[
 							{
@@ -1466,6 +1477,7 @@
 					},
 					{
 						"name": "Factory",
+						"access_rules": ["$canAccessFactory"],
 						"sections":
 						[
 							{
