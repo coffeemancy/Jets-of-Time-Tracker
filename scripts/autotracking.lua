@@ -309,7 +309,12 @@ function handleSeparateMoonstoneSunstone()
     end
   end
 
-  moonstoneFound = moonstone.found or isMoonstoneCharging()
+  -- treat moonstone found if in inventory, is currently charging,
+  -- or the "Charge Moonstone" was completed
+  moonstoneFound =
+    moonstone.found or
+    isMoonstoneCharging() or
+    Tracker:FindObjectForCode("@Sun Keep/Charge Moonstone").AvailableChestCount == 0
 
   trackerItem = Tracker:FindObjectForCode("moonstone")
   if moonstoneFound and sunstone.found then
