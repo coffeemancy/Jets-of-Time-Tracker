@@ -35,6 +35,12 @@ function vanillaRandoMode()
   return string.find(Tracker.ActiveVariantUID, "vanilla") ~= nil
 end
 
+-- Check if the tracker has a flag enabled
+function hasFlagEnabled(flag)
+  local code = "Flag_" .. flag .. "_on"
+  return Tracker:ProviderCountForCode(code) > 0
+end
+
 -- Check if the tracker variant is set to Items Only.
 function itemsOnlyTracking()
   return string.find(Tracker.ActiveVariantUID, "items_only") ~= nil

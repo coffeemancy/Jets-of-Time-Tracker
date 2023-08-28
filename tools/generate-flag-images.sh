@@ -35,6 +35,7 @@ FLAGS=(
   # "Split Arris Dome" "SplitArrisDome" 12
   # "Sun Keep Spot" "SunKeepSpot" 14
   # "Unlocked Skyways" "UnlockedSkyways" 12
+  "Show Extra Items" "ToggleExtraItems" 12
 )
 
 function set_imagemagick_command {

@@ -13,7 +13,14 @@
             "type": "array",
             "h_alignment": "center",
             "item_margin": "1,1",
-            "content": []
+            "content": [
+              {
+                "type": "item",
+                "item": "Flag_ToggleExtraItems_off",
+                "scale": 0.9,
+                "margin": "0,5"
+              }
+            ]
           }
         ]
       }
