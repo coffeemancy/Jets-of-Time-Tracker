@@ -31,7 +31,7 @@ FLAGS=(
   "Ozzie\'s Fort Spot" "OzzieFortSpot" 12
   "Race Log Spot" "RaceLogSpot" 12
   "Restore Tools" "RestoreTools" 16
-  # "Rocksanity" "Rocksanity" 16
+  "Rocksanity" "Rocksanity" 16
   "Split Arris Dome" "SplitArrisDome" 12
   "Sun Keep Spot" "SunKeepSpot" 14
   "Unlocked Skyways" "UnlockedSkyways" 14

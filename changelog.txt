@@ -7,7 +7,7 @@ v2.2.0
   - Add support for extra spots: Bekkler, Cyrus Grave, Ozzie's Fort, Race Log
   - Add support for extras KIs: Johnny Race (bikekey), Restore Tools (tools)
   - Add support for Split Arris Dome (arrisseed), Sun Keep Spot (separate moon/sunstone)
-  - Add support Unlocked Skyways
+  - Add support Unlocked Skyways, Rocksanity
 
 v2.1.1
   - Removed embedded .zip file, moved to using Releases from Github
