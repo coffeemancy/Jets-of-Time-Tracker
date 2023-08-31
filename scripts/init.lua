@@ -1,3 +1,5 @@
+print("Detected PopVersion: " .. PopVersion)
+
 ScriptHost:LoadScript("scripts/logic.lua")
 
 --
@@ -11,10 +13,12 @@ function addComponents()
   -- using paths relative to pack root directory
   local components = {}
   components["items_grid"] = "layouts/components/items_grid.json"
-  components["items_grid_extras"] = "layouts/components/items_grid_extras.json"
   components["bosses_grid"] = "layouts/components/bosses_grid.json"
   components["flags_grid"] = "layouts/components/flags_grid.json"
   components["extra_flags_grid"] = "layouts/components/extra_flags_grid.json"
+
+  print("Adding Components...")
+  for _, v in pairs(components) do Tracker:AddLayouts(v) end
 
   -- Toggles extra items on when "Shoe Extra Items" is toggled on
   function toggleExtraItems(_code)
@@ -25,10 +29,10 @@ function addComponents()
     end
   end
 
+  components["items_grid_extras"] = "layouts/components/items_grid_extras.json"
+
   -- Setup toggles in UI from Settings
   ScriptHost:AddWatchForCode("ToggleExtraItems", "toggle_extra_items", toggleExtraItems)
-
-  for _, v in pairs(components) do Tracker:AddLayouts(v) end
 
 end
 
@@ -46,11 +50,13 @@ function addTrackerLayouts()
     layouts["tracker"] = "items_only/layouts/tracker.json"
   end
 
+  print("Adding Layouts...")
   for _, v in pairs(layouts) do Tracker:AddLayouts(v) end
 
 end
 
 -- Configure tracker
+print("Configurating tracker...")
 Tracker:AddItems("items/items.json")
 Tracker:AddMaps("maps/maps.json")
 Tracker:AddLocations("locations/locations.json")
@@ -58,6 +64,7 @@ addComponents()
 addTrackerLayouts()
 
 if _VERSION == "Lua 5.3" then
+  print("Setting up autotracking...")
   ScriptHost:LoadScript("scripts/autotracking.lua")
 else
   print("Auto-tracker is unsupported by your tracker version")
