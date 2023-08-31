@@ -37,6 +37,12 @@
                 "item": "Flag_EpochFail_off",
                 "scale": 0.9,
                 "margin": "0,5"
+              },
+              {
+                "type": "item",
+                "item": "Flag_UnlockedSkyways_off",
+                "scale": 0.9,
+                "margin": "0,5"
               }
             ]
           }
