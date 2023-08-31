@@ -4,12 +4,12 @@
     "dock": "left",
     "content": [
       {
-        "type": "dock",
-        "dock": "bottom",
-        "h_alignment": "stretch",
+        "type": "scroll",
+        "vertical_scrollbar_visibility": "auto",
         "content": [
           {
-            "type": "dock",
+            "type": "array",
+            "orientation": "horizontal",
             "content": [
               {
                 "type": "layout",
