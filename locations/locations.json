@@ -973,7 +973,7 @@
               },
               {
                 "name": "Cyrus Grave",
-                "access_rules": ["grandleon"],
+                "access_rules": ["grandleon", "Flag_RestoreTools_on,tools"],
                 "visibility_rules": ["$vanillaRandoMode", "$notLegacyOfCyrusMode,Flag_CyrusGraveSpot_on"],
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
