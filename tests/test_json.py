@@ -1,7 +1,5 @@
 import json
-import os
 
-from collections import defaultdict
 from pathlib import Path
 from urllib.parse import urljoin
 from typing import Any, Dict, List
@@ -16,14 +14,13 @@ POPTRACKER_PACK_STRICT_TYPES = ['manifest', 'maps']
 SCHEMA_CACHE_DIR = Path(Path(__file__).parent.resolve(), '.poptracker_schemas')
 STRICT_SCHEMA_CACHE_DIR = Path(SCHEMA_CACHE_DIR, 'strict')
 POPTRACKER_REMOTE_PATH = 'https://poptracker.github.io/schema/packs/'
-POPTRACTER_REMOTE_STRICT_PATH = urljoin(POPTRACKER_REMOTE_PATH, 'strict/')
+POPTRACKER_REMOTE_STRICT_PATH = urljoin(POPTRACKER_REMOTE_PATH, 'strict/')
+
 
 @pytest.fixture(scope='session')
 def jsonfiles() -> List[Path]:
-    return [
-        path for path in Path('.').rglob('*.json')
-        if path.parts[0] not in ['.venv', 'tests']
-    ]
+    return [path for path in Path('.').rglob('*.json') if path.parts[0] not in ['.venv', 'tests']]
+
 
 @pytest.fixture(scope='session')
 def formatted_jsonfiles(jsonfiles) -> List[Path]:
@@ -32,10 +29,8 @@ def formatted_jsonfiles(jsonfiles) -> List[Path]:
     excluded_paths = [
         'locations/',
     ]
-    return [
-        p for p in jsonfiles
-        if not any(str(p).startswith(ep) for ep in excluded_paths)
-    ]
+    return [p for p in jsonfiles if not any(str(p).startswith(ep) for ep in excluded_paths)]
+
 
 @pytest.fixture(scope='session')
 def pack_files() -> Dict[str, List[Path]]:
@@ -49,18 +44,10 @@ def pack_files() -> Dict[str, List[Path]]:
         files_map[pack_type] = jsonfiles
     return files_map
 
-def get_or_download_schemas(
-    cache_dir: Path, remote_path: str
-) -> Dict[str, Dict[str, Any]]:
+
+def get_or_download_schemas(cache_dir: Path, remote_path: str) -> Dict[str, Dict[str, Any]]:
     # local schema file cache
-    cached_files = {
-        schema: Path(cache_dir, f'{schema}.json')
-        for schema in POPTRACKER_PACK_TYPES
-    }
-    urls = {
-        schema: urljoin(remote_path, f'{schema}.json')
-        for schema in POPTRACKER_PACK_TYPES
-    }
+    cached_files = {schema: Path(cache_dir, f'{schema}.json') for schema in POPTRACKER_PACK_TYPES}
     schemas: Dict[str, Dict[str, Any]] = {}
     for schema in POPTRACKER_PACK_TYPES:
         try:
@@ -76,6 +63,7 @@ def get_or_download_schemas(
             schemas[schema] = remote_schema
     return schemas
 
+
 @pytest.fixture(scope='session')
 def poptracker_schemas() -> Dict[str, Dict[str, Any]]:
     '''PopTracker JSON schemas downloaded from remote.'''
@@ -85,6 +73,7 @@ def poptracker_schemas() -> Dict[str, Dict[str, Any]]:
     cache_dir = SCHEMA_CACHE_DIR
     remote_path = POPTRACKER_REMOTE_PATH
     return get_or_download_schemas(cache_dir, remote_path)
+
 
 @pytest.fixture(scope='session')
 def poptracker_strict_schemas() -> Dict[str, Dict[str, Any]]:
@@ -97,6 +86,7 @@ def poptracker_strict_schemas() -> Dict[str, Dict[str, Any]]:
     remote_path = POPTRACKER_REMOTE_STRICT_PATH
     return get_or_download_schemas(cache_dir, remote_path)
 
+
 def test_all_jsonfiles_loadable(jsonfiles):
     '''Check all files are loadable as JSON.'''
     for jsonfile in jsonfiles:
@@ -105,6 +95,7 @@ def test_all_jsonfiles_loadable(jsonfiles):
         except Exception as ex:
             err = f'Failed to load as valid JSON: {jsonfile}'
             raise ValueError(err) from ex
+
 
 @pytest.mark.parametrize('pack_type', POPTRACKER_PACK_TYPES)
 def test_pack_schema_validation(pack_type, poptracker_schemas, pack_files):
@@ -116,6 +107,7 @@ def test_pack_schema_validation(pack_type, poptracker_schemas, pack_files):
             err = f'Failed to JSON schema validate file: {jsonfile}'
             raise ValueError(err) from ex
 
+
 @pytest.mark.parametrize('pack_type', POPTRACKER_PACK_STRICT_TYPES)
 def test_pack_strict_schema_validation(pack_type, poptracker_schemas, pack_files):
     schema = poptracker_schemas[pack_type]
@@ -125,6 +117,7 @@ def test_pack_strict_schema_validation(pack_type, poptracker_schemas, pack_files
         except Exception as ex:
             err = f'Failed to strict JSON schema validate file: {jsonfile}'
             raise ValueError(err) from ex
+
 
 def test_json_file_style(formatted_jsonfiles):
     '''Check all formatted json files are formatted per json.tool.'''
