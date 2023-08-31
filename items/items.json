@@ -638,13 +638,6 @@
     "codes": "bikekey"
   },
   {
-    "name": "Jerky Item",
-    "type": "toggle",
-    "loop": "true",
-    "img": "images/jerky.png",
-    "codes": "hiddenjerky"
-  },
-  {
     "name": "Fixed Epoch",
     "type": "toggle",
     "loop": "true",
