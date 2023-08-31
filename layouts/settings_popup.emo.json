@@ -4,24 +4,9 @@
     "dock": "left",
     "content": [
       {
-        "type": "scroll",
-        "vertical_scrollbar_visibility": "auto",
-        "content": [
-          {
-            "type": "array",
-            "orientation": "horizontal",
-            "content": [
-              {
-                "type": "layout",
-                "key": "flags_grid"
-              },
-              {
-                "type": "layout",
-                "key": "extra_flags_grid"
-              }
-            ]
-          }
-        ]
+        "type": "button_popup",
+        "style": "settings",
+        "layout": "flags_grid"
       }
     ]
   }
