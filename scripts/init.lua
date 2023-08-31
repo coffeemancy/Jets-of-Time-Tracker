@@ -1,4 +1,17 @@
-print("Detected PopVersion: " .. PopVersion)
+function getTrackerClient()
+  if PopVersion then
+    return {PopTracker=true}
+  end
+  return {EmoTracker=true}
+end
+
+TrackerClient = getTrackerClient()
+
+if TrackerClient.PopTracker then
+  print("Detected PopTracker: " .. PopVersion)
+else
+  print("Assuming EmoTracker")
+end
 
 ScriptHost:LoadScript("scripts/logic.lua")
 
@@ -20,19 +33,24 @@ function addComponents()
   print("Adding Components...")
   for _, v in pairs(components) do Tracker:AddLayouts(v) end
 
-  -- Toggles extra items on when "Shoe Extra Items" is toggled on
-  function toggleExtraItems(_code)
-    if hasFlagEnabled("ToggleExtraItems") then
-      Tracker:AddLayouts(components["items_grid_extras"])
-    else
-      Tracker:AddLayouts(components["items_grid"])
+  -- Setup PopTracker-specific enhancements
+  if TrackerClient.PopTracker then
+
+    components["items_grid_extras"] = "layouts/components/items_grid_extras.json"
+
+    -- Toggles extra items on when "Show Extra Items" is toggled on
+    function toggleExtraItems(_code)
+      if hasFlagEnabled("ToggleExtraItems") then
+        Tracker:AddLayouts(components["items_grid_extras"])
+      else
+        Tracker:AddLayouts(components["items_grid"])
+      end
     end
+
+    -- Setup toggles in UI from Settings
+    ScriptHost:AddWatchForCode("ToggleExtraItems", "toggle_extra_items", toggleExtraItems)
+
   end
-
-  components["items_grid_extras"] = "layouts/components/items_grid_extras.json"
-
-  -- Setup toggles in UI from Settings
-  ScriptHost:AddWatchForCode("ToggleExtraItems", "toggle_extra_items", toggleExtraItems)
 
 end
 
