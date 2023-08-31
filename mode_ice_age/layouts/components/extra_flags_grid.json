@@ -16,18 +16,6 @@
             "content": [
               {
                 "type": "item",
-                "item": "Flag_BucketList_off",
-                "scale": 0.9,
-                "margin": "0,5"
-              },
-              {
-                "type": "item",
-                "item": "Flag_BucketDisableOtherGo_off",
-                "scale": 0.9,
-                "margin": "0,5"
-              },
-              {
-                "type": "item",
                 "item": "Flag_JohnnyRace_off",
                 "scale": 0.9,
                 "margin": "0,3"

@@ -1906,7 +1906,31 @@
 								"y": 1311
 							}
 						]
-					}
+					},
+          {
+            "name": "Bucket",
+            "visibility_rules": ["Flag_BucketList_on"],
+            "access_rules": ["$metObjectives"],
+						"sections":
+						[
+							{
+								"name": "Bucket Boss Guantlet"
+							}
+						],
+						"map_locations":
+						[
+							{
+								"map": "End Of Time",
+								"x": 1073,
+								"y": 672
+							},
+							{
+								"map": "All Eras",
+								"x": 4145,
+								"y": 1696
+							}
+						]
+          }
 				]
 			}
 		]
