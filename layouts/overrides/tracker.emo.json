@@ -1,0 +1,34 @@
+{
+  "bottom_dock": {
+    "type": "dock",
+    "content": [
+      {
+        "type": "group",
+        "header": "Items",
+        "dock": "left",
+        "content": {
+          "type": "layout",
+          "key": "items_grid"
+        }
+      },
+      {
+        "type": "group",
+        "header": "Bosses",
+        "dock": "left",
+        "content": {
+          "type": "layout",
+          "key": "bosses_grid"
+        }
+      },
+      {
+        "type": "group",
+        "header": "Settings",
+        "dock": "left",
+        "content": {
+          "type": "layout",
+          "key": "settings_popup"
+        }
+      }
+    ]
+  }
+}

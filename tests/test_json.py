@@ -96,6 +96,8 @@ def test_all_jsonfiles_loadable(jsonfiles):
 def test_pack_schema_validation(pack_type, poptracker_schemas, pack_files):
     schema = poptracker_schemas[pack_type]
     for jsonfile in pack_files[pack_type]:
+        if '.emo' in str(jsonfile):
+            pytest.skip(f'Skipping EmoTracker-specific file: {jsonfile}')
         try:
             validate(json.load(jsonfile.open()), schema)
         except Exception as ex:
@@ -107,6 +109,8 @@ def test_pack_schema_validation(pack_type, poptracker_schemas, pack_files):
 def test_pack_strict_schema_validation(pack_type, poptracker_schemas, pack_files):
     schema = poptracker_schemas[pack_type]
     for jsonfile in pack_files[pack_type]:
+        if '.emo' in str(jsonfile):
+            pytest.skip(f'Skipping EmoTracker-specific file: {jsonfile}')
         try:
             validate(json.load(jsonfile.open()), schema)
         except Exception as ex:

@@ -1,0 +1,28 @@
+{
+  "settings_popup": {
+    "type": "dock",
+    "dock": "left",
+    "content": [
+      {
+        "type": "dock",
+        "dock": "bottom",
+        "h_alignment": "stretch",
+        "content": [
+          {
+            "type": "dock",
+            "content": [
+              {
+                "type": "layout",
+                "key": "flags_grid"
+              },
+              {
+                "type": "layout",
+                "key": "extra_flags_grid"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -64,6 +64,14 @@ function addTrackerLayouts()
   layouts["broadcast"] = "layouts/broadcast.json"
   layouts["settings_popup"] = "layouts/settings_popup.json"
 
+  -- EmoTracker-specific replacement layouts and overrides
+  if TrackerClient.EmoTracker then
+    layouts["settings_popup"] = "layouts/settings_popup.emo.json"
+
+    -- overrides
+    layouts["tracker_override"] = "layouts/overrides/tracker.emo.json"
+  end
+
   if itemsOnlyTracking() then
     layouts["tracker"] = "items_only/layouts/tracker.json"
   end

@@ -42,6 +42,29 @@
       ]
     }
   },
+  "bottom_dock": {
+    "type": "dock",
+    "content": [
+      {
+        "type": "group",
+        "header": "Items",
+        "dock": "left",
+        "content": {
+          "type": "layout",
+          "key": "items_grid"
+        }
+      },
+      {
+        "type": "group",
+        "header": "Bosses",
+        "dock": "left",
+        "content": {
+          "type": "layout",
+          "key": "bosses_grid"
+        }
+      }
+    ]
+  },
   "tracker_default": {
     "type": "container",
     "background": "#101010",
@@ -55,22 +78,8 @@
           "h_alignment": "stretch",
           "content": [
             {
-              "type": "group",
-              "header": "Items",
-              "dock": "left",
-              "content": {
-                "type": "layout",
-                "key": "items_grid"
-              }
-            },
-            {
-              "type": "group",
-              "header": "Bosses",
-              "dock": "left",
-              "content": {
-                "type": "layout",
-                "key": "bosses_grid"
-              }
+              "type": "layout",
+              "key": "bottom_dock"
             }
           ]
         },
@@ -158,22 +167,8 @@
           "h_alignment": "stretch",
           "content": [
             {
-              "type": "group",
-              "header": "Items",
-              "dock": "left",
-              "content": {
-                "type": "layout",
-                "key": "items_grid"
-              }
-            },
-            {
-              "type": "group",
-              "header": "Bosses",
-              "dock": "left",
-              "content": {
-                "type": "layout",
-                "key": "bosses_grid"
-              }
+              "type": "layout",
+              "key": "bottom_dock"
             }
           ]
         },
