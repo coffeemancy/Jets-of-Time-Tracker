@@ -144,5 +144,108 @@
         }
       ]
     }
+  },
+  "tracker_vertical": {
+    "type": "container",
+    "background": "#101010",
+    "content": {
+      "type": "dock",
+      "dropshadow": true,
+      "content": [
+        {
+          "type": "dock",
+          "dock": "bottom",
+          "h_alignment": "stretch",
+          "content": [
+            {
+              "type": "group",
+              "header": "Items",
+              "dock": "left",
+              "content": {
+                "type": "layout",
+                "key": "items_grid"
+              }
+            },
+            {
+              "type": "group",
+              "header": "Bosses",
+              "dock": "left",
+              "content": {
+                "type": "layout",
+                "key": "bosses_grid"
+              }
+            }
+          ]
+        },
+        {
+          "type": "tabbed",
+          "tabs": [
+            {
+              "title": "All Eras",
+              "content": {
+                "type": "map",
+                "maps": [
+                  "All Eras (Vertical)"
+                ]
+              }
+            },
+            {
+              "title": "Prehistory",
+              "content": {
+                "type": "map",
+                "maps": [
+                  "Prehistory"
+                ]
+              }
+            },
+            {
+              "title": "Dark Ages",
+              "content": {
+                "type": "map",
+                "maps": [
+                  "Dark Ages"
+                ]
+              }
+            },
+            {
+              "title": "Middle Ages",
+              "content": {
+                "type": "map",
+                "maps": [
+                  "Middle Ages"
+                ]
+              }
+            },
+            {
+              "title": "Present",
+              "content": {
+                "type": "map",
+                "maps": [
+                  "Present"
+                ]
+              }
+            },
+            {
+              "title": "Future",
+              "content": {
+                "type": "map",
+                "maps": [
+                  "Future"
+                ]
+              }
+            },
+            {
+              "title": "End Of Time",
+              "content": {
+                "type": "map",
+                "maps": [
+                  "End Of Time"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }

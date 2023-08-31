@@ -24,12 +24,7 @@ def jsonfiles() -> List[Path]:
 
 @pytest.fixture(scope='session')
 def formatted_jsonfiles(jsonfiles) -> List[Path]:
-    # exclude older paths and gradually update to new formatting
-    # to avoid having large git diffs
-    excluded_paths = [
-        'locations/',
-    ]
-    return [p for p in jsonfiles if not any(str(p).startswith(ep) for ep in excluded_paths)]
+    return [p for p in jsonfiles]
 
 
 @pytest.fixture(scope='session')
