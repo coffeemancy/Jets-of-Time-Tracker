@@ -28,7 +28,6 @@ def formatted_jsonfiles(jsonfiles) -> List[Path]:
     # to avoid having large git diffs
     excluded_paths = [
         'items/',
-        'locations/',
     ]
     return [p for p in jsonfiles if not any(str(p).startswith(ep) for ep in excluded_paths)]
 
