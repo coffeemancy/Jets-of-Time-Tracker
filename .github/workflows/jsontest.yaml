@@ -5,7 +5,7 @@ on:
     paths:
       - .github/workflows/jsontest.yaml
       - '**.json'
-      - tests/checkjson.py
+      - tests/
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,4 +23,4 @@ jobs:
           pip install -r tests/requirements.txt
       - name: Check JSON files
         run: |
-          pytest -v tests/test_json.py
+          pytest -v tests/json/
