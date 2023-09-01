@@ -18,6 +18,17 @@ MAP_OFFSETS: t.Dict[str, t.Tuple[int, int]] = {
         'Future': (3072, 0),
         'End Of Time': (3072, 1024),
     },
+    # Prehistory  | Dark Ages
+    # Middle Ages | Present
+    # Future      | End of Time
+    'All Eras (Vertical)': {
+        'Prehistory': (0, 0),
+        'Dark Ages': (1536, 0),
+        'Middle Ages': (0, 1024),
+        'Present': (1536, 1024),
+        'Future': (0, 2048),
+        'End Of Time': (1536, 2048),
+    },
 }
 
 
