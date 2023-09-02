@@ -49,6 +49,12 @@
         "type": "group",
         "header": "Items",
         "dock": "left",
+        "header_content": {
+          "type": "button_popup",
+          "style": "settings",
+          "popup_background": "#101010",
+          "layout": "settings_popup"
+        },
         "content": {
           "type": "layout",
           "key": "items_grid"
@@ -61,6 +67,15 @@
         "content": {
           "type": "layout",
           "key": "bosses_grid"
+        }
+      },
+      {
+        "type": "group",
+        "header": "Flags",
+        "dock": "left",
+        "content": {
+          "type": "layout",
+          "key": "flags_grid"
         }
       }
     ]

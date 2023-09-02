@@ -1,39 +1,29 @@
 {
   "flags_grid": {
     "type": "array",
-    "orientation": "horizontal",
-    "margin": "0,0",
+    "orientation": "vertical",
+    "min_width": 260,
+    "min_height": 200,
     "content": [
       {
-        "type": "array",
-        "h_alignment": "center",
-        "item_margin": "1,1",
-        "content": [
-          {
-            "type": "item",
-            "item": "Flag_CharLock_off",
-            "scale": 0.9,
-            "margin": "0,5"
-          },
-          {
-            "type": "item",
-            "item": "Flag_EarlyPendant_off",
-            "scale": 0.9,
-            "margin": "0,5"
-          },
-          {
-            "type": "item",
-            "item": "Flag_Chronosanity_off",
-            "scale": 0.9,
-            "margin": "0,5"
-          },
-          {
-            "type": "item",
-            "item": "Flag_Epoch_Fail_off",
-            "scale": 0.9,
-            "margin": "0,5"
-          }
-        ]
+        "type": "item",
+        "item": "Flag_CharLock_off",
+        "margin": "5, 5, 5, 5"
+      },
+      {
+        "type": "item",
+        "item": "Flag_EarlyPendant_off",
+        "margin": "5, 5, 5, 5"
+      },
+      {
+        "type": "item",
+        "item": "Flag_Chronosanity_off",
+        "margin": "5, 5, 5, 5"
+      },
+      {
+        "type": "item",
+        "item": "Flag_Epoch_Fail_off",
+        "margin": "5, 5, 5, 5"
       }
     ]
   }
