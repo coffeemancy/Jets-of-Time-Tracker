@@ -20,14 +20,14 @@
             "type": "layout",
             "dropshadow": true,
             "dock": "left",
-            "margin": 1,
+            "margin": "1",
             "key": "items_grid"
           },
           {
             "type": "layout",
             "dropshadow": true,
             "dock": "left",
-            "margin": 1,
+            "margin": "1",
             "key": "bosses_grid"
           }
         ]
