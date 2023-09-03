@@ -86,13 +86,6 @@ def jsonfiles(paths) -> List[Path]:
 
 
 @pytest.fixture(scope='session')
-def formatted_jsonfiles(paths, jsonfiles) -> List[Path]:
-    # exclude older paths and gradually update to new formatting to avoid having large git diffs
-    excluded_paths = ['items']
-    return [p for p in jsonfiles if p.relative_to(paths['root']).parts[0] not in excluded_paths]
-
-
-@pytest.fixture(scope='session')
 def pack_files(paths) -> Dict[str, List[Path]]:
     return get_pack_files(paths['root'])
 
@@ -189,11 +182,9 @@ def test_pack_schema_validation(pack_type, tracker, validators, pack_files, prin
             raise ValueError(err) from ex
 
 
-def test_json_file_style(paths, formatted_jsonfiles):
+def test_json_file_style(paths, jsonfiles):
     '''Check all formatted json files are formatted per json.tool.'''
-    assert formatted_jsonfiles, 'Failed to find any formatted json files.'
-
-    for jsonfile in formatted_jsonfiles:
+    for jsonfile in jsonfiles:
         text = jsonfile.read_text()
         loaded_json = json.loads(text)
         formatted_output = json.dumps(loaded_json, indent=2) + '\n'
