@@ -1,11 +1,4 @@
 {
-  "tracker_capture_item": {
-    "type": "container",
-    "content": {
-      "type": "layout",
-      "key": "items_grid"
-    }
-  },
   "tracker_default": {
     "type": "container",
     "width": 470,

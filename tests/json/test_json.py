@@ -1,11 +1,9 @@
 import json
 
-from urllib.parse import urlsplit
-
 from dataclasses import dataclass
 from pathlib import Path
-from urllib.parse import urljoin
 from typing import Any, Dict, List, Type
+from urllib.parse import urljoin, urlsplit
 
 import jsonschema
 import pytest

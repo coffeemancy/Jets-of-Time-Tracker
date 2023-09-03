@@ -44,6 +44,8 @@ function addTrackerLayouts()
 
   print("Adding Layouts...")
 
+  Tracker:AddLayouts("layouts/capture.json")
+
   if itemsOnlyTracking() then
     Tracker:AddLayouts("items_only/layouts/tracker.json")
   else
