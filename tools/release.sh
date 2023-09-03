@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script is used for building a zip file suiteable for PopTracker/Emotracker.
+# This script is used for building a zip file suitable for PopTracker/Emotracker.
 # 
 # It builds a zip file which abides excluding files per .gitattributes (like git archive)
 # but dereferences all symlinks (making copies of their linked files).

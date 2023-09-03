@@ -23,7 +23,7 @@ automatically add the "All Eras" coordinates, overwriting the locations file:
 
 ### Release Automation
 
-The `tools/release.sh` tool can be used to build a zip file suiteable for PopTracker/EmoTracker.
+The `tools/release.sh` tool can be used to build a zip file suitable for PopTracker/EmoTracker.
 
 It builds a zip file which follows the exclusion rules per `.gitattributes` (like how
 `git archive` does), however, it also dereferences all symlinks, making copies of their linked
@@ -32,7 +32,7 @@ files. It verifies the created artifact is a valid zip file.
 By default, it creates a zip file containing the short hash reference of the git ref it was
 built from. For release candidates and releases, a specific output file name can be specified.
 
-Usage details can be found by running `./tools/releas.sh -h`.
+Usage details can be found by running `./tools/release.sh -h`.
 
 ## Development
 
@@ -87,7 +87,7 @@ these tests (the tests actually invoke this tools `--check` mode).
 
 #### `build-release.yaml`
 
-This workflow uses `tools/release.sh` to build a release zip, which would be suiteable
+This workflow uses `tools/release.sh` to build a release zip, which would be suitable
 for direct use by PopTracker/EmoTracker.
 
 It uses a GitHub Actions to [store workflow data as an artifact](https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts).
@@ -114,7 +114,7 @@ to the EmoTracker registry so they are downloaded in the app directly.)
 
 It is recommended to create tags (in the form of "vmajor.minor.patch", e.g. v2.1.1) along with
 each release, corresponding to bumping the version in `manifest.json` and the `changelog.txt`
-file with brief description of updates in this release. Test versions can use a "release candidate"
+file with brief description of end-user-impacting updates in this release. Test versions can use a "release candidate"
 suffix (e.g. v.2.1.1-rc0). Releases/tags are intended to be immutable (not overwritten).
 
 ### Local Release Artifacts
