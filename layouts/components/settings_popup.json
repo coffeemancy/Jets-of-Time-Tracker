@@ -2,23 +2,23 @@
   "settings_popup": {
     "type": "container",
     "background": "#101010",
-    "min_width": 260,
-    "min_height": 200,
+    "min_width": 200,
+    "min_height": 164,
     "content": {
       "type": "dock",
       "dropshadow": true,
-      "min_width": 260,
+      "min_width": 200,
       "content": [
         {
           "type": "dock",
           "dock": "bottom",
-          "min_width": 260,
-          "min_height": 200,
+          "min_width": 200,
+          "min_height": 164,
           "content": [
             {
               "type": "tabbed",
-              "min_width": 260,
-              "min_height": 200,
+              "min_width": 200,
+              "min_height": 164,
               "h_alignment": "left",
               "tabs": [
                 {

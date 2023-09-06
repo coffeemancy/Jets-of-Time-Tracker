@@ -343,11 +343,11 @@
     "loop": true,
     "stages": [
       {
-        "img": "images/Flag_CharLock_on.png",
-        "codes": "Flag_CharLock_on,"
+        "img": "images/flags/Flag_CharLock_on.png",
+        "codes": "Flag_CharLock_on"
       },
       {
-        "img": "images/Flag_CharLock_off.png",
+        "img": "images/flags/Flag_CharLock_off.png",
         "codes": "Flag_CharLock_off"
       }
     ]
@@ -360,11 +360,11 @@
     "loop": true,
     "stages": [
       {
-        "img": "images/Flag_EarlyPendant_off.png",
+        "img": "images/flags/Flag_EarlyPendant_off.png",
         "codes": "Flag_EarlyPendant_off"
       },
       {
-        "img": "images/Flag_EarlyPendant_on.png",
+        "img": "images/flags/Flag_EarlyPendant_on.png",
         "codes": "Flag_EarlyPendant_on, earlypendant"
       }
     ]
@@ -377,11 +377,11 @@
     "loop": true,
     "stages": [
       {
-        "img": "images/Flag_Chronosanity_off.png",
+        "img": "images/flags/Flag_Chronosanity_off.png",
         "codes": "Flag_Chronosanity_off"
       },
       {
-        "img": "images/Flag_Chronosanity_on.png",
+        "img": "images/flags/Flag_Chronosanity_on.png",
         "codes": "Flag_Chronosanity_on, chronosanity"
       }
     ]
@@ -394,12 +394,12 @@
     "loop": true,
     "stages": [
       {
-        "img": "images/Flag_Epoch_Fail_off.png",
-        "codes": "Flag_Epoch_Fail_off"
+        "img": "images/flags/Flag_EpochFail_off.png",
+        "codes": "Flag_EpochFail_off"
       },
       {
-        "img": "images/Flag_Epoch_Fail_on.png",
-        "codes": "Flag_Epoch_Fail_on, epochfail"
+        "img": "images/flags/Flag_EpochFail_on.png",
+        "codes": "Flag_EpochFail_on, epochfail"
       }
     ]
   },
