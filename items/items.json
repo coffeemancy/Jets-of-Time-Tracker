@@ -412,6 +412,25 @@
     ]
   },
   {
+    "name": "Toggle Extra Items",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_ToggleExtraItems_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_ToggleExtraItems_off, toggle_extra_items"
+      },
+      {
+        "img": "images/flags/Flag_ToggleExtraItems_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_ToggleExtraItems_on, toggle_extra_items"
+      }
+    ]
+  },
+  {
     "name": "Jerky Item",
     "type": "toggle",
     "loop": true,
