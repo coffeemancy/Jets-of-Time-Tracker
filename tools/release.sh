@@ -9,6 +9,7 @@ set -euo pipefail
 
 CWD="$(builtin pwd)"
 GIT_ROOT="$(builtin cd "$(dirname "${BASH_SOURCE[0]}")"/.. && builtin pwd)"
+export CWD GIT_ROOT
 
 function cleanup {
   ret=$?
@@ -31,14 +32,18 @@ function preflight {
   commands=(git tar zip unzip)
   for cmd in "${commands[@]}"; do
     if ! command -v "$cmd" > /dev/null; then
-      >&2 echo "This script requires $cmd!"
+      >&2 echo -e "\e[31mThis script requires $cmd!\e[0m"
       exit 1
     fi
   done 
 
   if [[ -z "${RELEASE_ZIP}" ]]; then
     # if no specified name, generate a zip name
-    RELEASE_ZIP="Jets-of-Time-Tracker-$(git rev-parse --short HEAD).zip"
+    if [[ -n "${CUSTOMIZE_SCRIPT}" ]]; then
+      RELEASE_ZIP="Jets-of-Time-Tracker-custom.zip"
+    else
+      RELEASE_ZIP="Jets-of-Time-Tracker-$(git rev-parse --short HEAD).zip"
+    fi
     export RELEASE_ZIP
   fi
 
@@ -55,7 +60,7 @@ function preflight {
 }
 
 function build_release {
-  echo "Building release ${RELEASE_ZIP}"
+  echo -e "\e[1;30mBuilding release:\e[0m ${RELEASE_ZIP}"
 
   TEMP_DIR="${TEMP_DIR:-$(mktemp -d)}"
   export TEMP_DIR
@@ -63,7 +68,7 @@ function build_release {
 
   # create an archive just to get a list of files that abides .gitattributes
   echo "* Creating git archive"
-  cd "$GIT_ROOT" || (echo "Can't change to $GIT_ROOT directory!" && exit 1)
+  cd "$GIT_ROOT" || (>&2 echo -e "\e[31mCan't change to $GIT_ROOT directory!\e[0m" && exit 1)
   git archive HEAD --format=tar -o "${TEMP_DIR}/archive.tar"
 
   # use list of non-directory files from initial archive tarball to produce a new tar
@@ -79,6 +84,17 @@ function build_release {
   mkdir zip
   cd zip
   tar -xf ../release.tar.gz
+
+  # optional customize.sh if user wants to use it
+  if [[ -n "${CUSTOMIZE_SCRIPT}" ]] && [[ -x "${CUSTOMIZE_SCRIPT}" ]]; then
+    echo "* Applying customizations from ${CUSTOMIZE_SCRIPT}"
+    cp "${CUSTOMIZE_SCRIPT}" "${TEMP_DIR}/customize.sh"
+    pwd="$(builtin pwd)"
+    cd "${TEMP_DIR}"
+    ./customize.sh
+    cd "$pwd"
+  fi
+
   zip -q -r ../release.zip .
   cd "${CWD}"
   cp "${TEMP_DIR}/release.zip" "${RELEASE_ZIP}"
@@ -87,21 +103,30 @@ function build_release {
   echo "* Verifying release zip"
   unzip -qt "${RELEASE_ZIP}" > /dev/null
 
-  echo "Created release: ${RELEASE_ZIP}"
+  echo -e "\e[1;30mCreated release:\e[0m ${RELEASE_ZIP}"
 }
 
 function usage {
-  echo "./tools/release.sh [-o] [-y]"
+  echo "./tools/release.sh [-c] [-o] [-y]"
   echo
+  echo "-c     run customization script as part of build"
   echo "-h     print this help"
   echo "-o     output zip filename to use"
   echo "-y     do not prompt (overwrites release zip)"
 }
 
+CUSTOMIZE_SCRIPT="${CUSTOMIZE_SCRIPT:-}"
 RELEASE_ZIP="${RELEASE_ZIP:-}"
 YES="${YES:-}"
-while getopts 'ho:y' flag; do
+while getopts 'c:ho:y' flag; do
   case "${flag}" in
+    c)
+      CUSTOMIZE_SCRIPT="${OPTARG}"
+      if [[ -n "${CUSTOMIZE_SCRIPT}" ]] && [[ ! -x "${CUSTOMIZE_SCRIPT}" ]]; then
+        >&2 echo -e "\e[31mCustomize script is not executable: ${CUSTOMIZE_SCRIPT}\e[0m"
+        exit 1
+      fi
+      ;;
     h)
       usage
       exit 0
@@ -117,8 +142,7 @@ while getopts 'ho:y' flag; do
       exit 1
   esac
 done
-export RELEASE_ZIP YES
-export YES
+export CUSTOMIZE_SCRIPT RELEASE_ZIP YES
 
 preflight
 build_release

@@ -101,7 +101,7 @@ The `tools` directory has tools for building/modifying/verifying pack assets.
 
 ### Generating flag images
 
-The `./tools/generate-flag-images.sh` script can be used to generate flag images using
+The `tools/generate-flag-images.sh` script can be used to generate flag images using
 [ImageMagick](https://imagemagick.org/). This script requires ImageMagick is installed in order to work.
 It checks for the `magick` command at start.
 
@@ -109,7 +109,7 @@ This tool is used to generate all of the flag/extra flag images used in the trac
 image templates. More information can be found by running:
 
 ```bash
-./toosl/generate-flag-images.sh -h
+./tools/generate-flag-images.sh -h
 ```
 
 This script is checked with `shellcheck` via github workflow.
@@ -143,3 +143,10 @@ By default, it creates a zip file containing the short hash reference of the git
 built from. For release candidates and releases, a specific output file name can be specified.
 
 Usage details can be found by running `./tools/release.sh -h`.
+
+#### Pack Customization
+
+The `tools/release.sh` can also be used to create a customized pack, if desired, such as
+modifying pack files (e.g. background colors or whatever settings desired), generating alternative
+flag images (via `tools/generate-flags-images.sh`) or more. An example customize script
+is included in `tools/customize.example.sh`, with some more details.
