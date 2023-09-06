@@ -20,16 +20,16 @@ TEMPLATE_FLAG_ON="${FLAG_ON:-images/flags/template_Flag_on.png}"
 # Flag Definitions
 # "Flag Text" "File name portion" pointsize
 FLAGS=(
-  # "Bekkler Spot" "BekklerSpot" 12
+  "Bekkler Spot" "BekklerSpot" 12
   # "Bucket List" "BucketList" 14
   "Chronosanity" "Chronosanity" 16
-  # "Cyrus Grave Spot" "CyrusGraveSpot" 12
+  "Cyrus Grave Spot" "CyrusGraveSpot" 12
   "Early Pendant" "EarlyPendant" 16
   "Epoch Fail" "EpochFail" 16
   # "Johnny Race" "JohnnyRace" 16
   "Locked Chars" "CharLock" 16
-  # "Ozzie\'s Fort Spot" "OzzieFortSpot" 12
-  # "Race Log Spot" "RaceLogSpot" 12
+  "Ozzie\'s Fort Spot" "OzzieFortSpot" 12
+  "Race Log Spot" "RaceLogSpot" 12
   # "Restore Tools" "RestoreTools" 16
   # "Rocksanity" "Rocksanity" 16
   # "Split Arris Dome" "SplitArrisDome" 12

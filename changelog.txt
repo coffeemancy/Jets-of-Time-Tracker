@@ -1,6 +1,7 @@
 v2.2.0
   - Add support for Ice Age mode
   - Add support for vertical tracker orientation
+  - Add support for extra spots: Bekkler, Cyrus Grave, Ozzie's Fort, Race Log
 
 v2.1.1
   - Fixed tracking equipped items to work with Duplicate Characters.

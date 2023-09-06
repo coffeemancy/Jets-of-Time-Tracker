@@ -1,0 +1,22 @@
+{
+  "extra_flags_grid": {
+    "type": "array",
+    "orientation": "horizontal",
+    "margin": "0, 0",
+    "content": [
+      {
+        "type": "array",
+        "h_alignment": "center",
+        "item_margin": "1, 1",
+        "content": [
+          {
+            "type": "item",
+            "item": "Flag_CyrusGraveSpot_off",
+            "scale": 0.9,
+            "margin": "0,3"
+          }
+        ]
+      }
+    ]
+  }
+}

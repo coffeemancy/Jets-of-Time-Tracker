@@ -527,9 +527,12 @@ function updateEventsAndBosses(segment)
       keyItemChecksDone = keyItemChecksDone + updateEvent("@Guardia Castle Present/King Guardia's Trial", segment, 0x7F00A2, 0x80)
       keyItemChecksDone = keyItemChecksDone + handleMelchiorRefinements(segment)
 
-      -- Checks specific to vanilla randomizer mode
-      if vanillaRandoMode() then
+      -- Checks specific to vanilla randomizer mode or specific extras flags
+      if vanillaRandoMode() or hasFlagEnabled("BekklerSpot") then
         keyItemChecksDone = keyItemChecksDone + updateEvent("@Norstein Bekkler's Tent of Horrors/Clone Game", segment, 0x7F007C, 0x01)
+      end
+
+      if vanillaRandoMode() or hasFlagEnabled("CyrusGraveSpot") then
         keyItemChecksDone = keyItemChecksDone + updateEvent("@Northern Ruins Past/Cyrus Grave", segment, 0x7F01A3, 0x40)
       end
 
@@ -537,6 +540,9 @@ function updateEventsAndBosses(segment)
       if legacyOfCyrusMode() then
         updateBoss("ozzie", segment, 0x7F01A1, 0x80)
         updateBoss("cyrusgrave", segment, 0x7F01A3, 0x40)
+      end
+      if hasFlagEnabled("OzzieFortSpot") then
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Ozzie's Fort/Defeat Ozzie", segment, 0x7F01A1, 0x80)
       end
     end
 
@@ -1209,6 +1215,9 @@ function updateChests(segment)
       {0x0E, 0x80}
     }
   }
+  if hasFlagEnabled("RaceLogSpot") then
+    chests["Race Log"] = {{0x0F, 0x01}}
+  end
   chestsOpened = chestsOpened + handleChests(segment, "@Lab32/", chests)
 
   -- Geno Dome
