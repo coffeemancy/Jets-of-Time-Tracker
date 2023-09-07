@@ -1311,8 +1311,8 @@
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
                 "access_rules": [
-                  "marle,prismshard, [pendant]",
-                  "marle,prismshard, [gatekey]"
+                  "[marle], prismshard, [pendant]",
+                  "[marle], prismshard, [gatekey]"
                 ],
                 "item_count": 1
               },
@@ -1373,7 +1373,7 @@
                   "chronosanity"
                 ],
                 "access_rules": [
-                  "marle,prismshard"
+                  "prismshard"
                 ],
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
