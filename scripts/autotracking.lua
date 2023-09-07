@@ -621,6 +621,7 @@ function updateEventsAndBosses(segment)
       -- The trial is a guess. Two flags go high here and I just picked one arbitrarily
       keyItemChecksDone = keyItemChecksDone + updateEvent("@Guardia Castle Present/King Guardia's Trial", segment, 0x7F00A2, 0x80)
       keyItemChecksDone = keyItemChecksDone + handleMelchiorRefinements(segment)
+      updateEvent("@Porre Mayor's House/Jerky Gift", segment, 0x7F013A, 0x08)
 
       -- Checks specific to vanilla randomizer mode or specific extras flags
       if vanillaRandoMode() or hasFlagEnabled("BekklerSpot") then

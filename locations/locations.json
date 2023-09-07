@@ -1699,6 +1699,15 @@
             "name": "Porre Mayor's House",
             "sections": [
               {
+                "name": "Jerky Gift",
+                "access_rules": [
+                  "jerky"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
+              },
+              {
                 "name": "Chests",
                 "visibility_rules": [
                   "chronosanity"
