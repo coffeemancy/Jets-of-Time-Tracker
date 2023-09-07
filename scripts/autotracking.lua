@@ -647,8 +647,10 @@ function updateEventsAndBosses(segment)
   handleSealedChests(segment)
 
   -- Check if the Epoch is capable of flight.
-  -- This is used in the Epoch Fail mode of Vanilla Rando
-  updateEvent("@Snail Stop/Attach Epoch Wings", segment, 0x7F00BA, 0x80)
+  -- This is used in the Epoch Fail mode or Vanilla Rando
+  if hasFlagEnabled("EpochFail") then
+    updateBoss("fixedepoch", segment, 0x7F00BA, 0x80)
+  end
 
 end
 
