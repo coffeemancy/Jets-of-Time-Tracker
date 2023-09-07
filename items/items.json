@@ -434,6 +434,25 @@
     ]
   },
   {
+    "name": "Rocksanity",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_Rocksanity_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_Rocksanity_off"
+      },
+      {
+        "img": "images/flags/Flag_Rocksanity_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_Rocksanity_on, rocksanity"
+      }
+    ]
+  },
+  {
     "name": "Johnny Race",
     "type": "progressive",
     "allow_disabled": false,
@@ -652,5 +671,12 @@
     "img": "images/kiyes.png",
     "codes": "checkcounter",
     "max_quantity": 200
+  },
+  {
+    "name": "RockCounter",
+    "type": "consumable",
+    "img": "images/rock.png",
+    "codes": "rockcounter",
+    "max_quantity": 5
   }
 ]

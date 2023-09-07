@@ -23,6 +23,12 @@
           },
           {
             "type": "item",
+            "item": "Flag_Rocksanity_off",
+            "scale": 0.9,
+            "margin": "3, 5, 3, 5"
+          },
+          {
+            "type": "item",
             "item": "Flag_SplitArrisDome_off",
             "scale": 0.9,
             "margin": "3, 5, 3, 5"
@@ -32,7 +38,14 @@
             "item": "Flag_SunKeepSpot_off",
             "scale": 0.9,
             "margin": "3, 5, 3, 5"
-          },
+          }
+        ]
+      },
+      {
+        "type": "array",
+        "h_alignment": "center",
+        "item_margin": "1, 1",
+        "content": [
           {
             "type": "item",
             "item": "Flag_BekklerSpot_off",
