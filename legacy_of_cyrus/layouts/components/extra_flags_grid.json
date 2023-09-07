@@ -13,7 +13,7 @@
             "type": "item",
             "item": "Flag_CyrusGraveSpot_off",
             "scale": 0.9,
-            "margin": "0,3"
+            "margin": "3, 5, 3, 5"
           }
         ]
       }

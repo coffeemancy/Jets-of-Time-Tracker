@@ -3,6 +3,7 @@ v2.2.0
   - Add support for vertical tracker orientation
   - Add support for extra spots: Bekkler, Cyrus Grave, Ozzie's Fort, Race Log
   - Add support for extras KIs: Johnny Race (bikekey), Restore Tools (tools)
+  - Add support for extras: Split Arris Dome (arrisseed)
 
 v2.1.1
   - Fixed tracking equipped items to work with Duplicate Characters.

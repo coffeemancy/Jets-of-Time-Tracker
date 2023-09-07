@@ -13,31 +13,37 @@
             "type": "item",
             "item": "Flag_JohnnyRace_off",
             "scale": 0.9,
-            "margin": "0,3"
+            "margin": "3, 5, 3, 5"
           },
           {
             "type": "item",
             "item": "Flag_RestoreTools_off",
             "scale": 0.9,
-            "margin": "0,3"
+            "margin": "3, 5, 3, 5"
+          },
+          {
+            "type": "item",
+            "item": "Flag_SplitArrisDome_off",
+            "scale": 0.9,
+            "margin": "3, 5, 3, 5"
           },
           {
             "type": "item",
             "item": "Flag_CyrusGraveSpot_off",
             "scale": 0.9,
-            "margin": "0,3"
+            "margin": "3, 5, 3, 5"
           },
           {
             "type": "item",
             "item": "Flag_OzzieFortSpot_off",
             "scale": 0.9,
-            "margin": "0,3"
+            "margin": "3, 5, 3, 5"
           },
           {
             "type": "item",
             "item": "Flag_RaceLogSpot_off",
             "scale": 0.9,
-            "margin": "0,3"
+            "margin": "3, 5, 3, 5"
           }
         ]
       }

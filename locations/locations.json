@@ -1756,6 +1756,30 @@
               },
               {
                 "name": "Activate the Computer",
+                "visibility_rules": [
+                  "Flag_SplitArrisDome_off"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
+              },
+              {
+                "name": "Trade the Seed",
+                "visibility_rules": [
+                  "Flag_SplitArrisDome_on"
+                ],
+                "access_rules": [
+                  "arrisseed"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
+              },
+              {
+                "name": "Food Locker",
+                "visibility_rules": [
+                  "Flag_SplitArrisDome_on"
+                ],
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
                 "item_count": 1
