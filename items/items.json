@@ -453,6 +453,44 @@
     ]
   },
   {
+    "name": "Bucket List",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_BucketList_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_BucketList_off"
+      },
+      {
+        "img": "images/flags/Flag_BucketList_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_BucketList_on"
+      }
+    ]
+  },
+  {
+    "name": "Bucket Go Mode Only",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_BucketDisableOtherGo_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_BucketDisableOtherGo_off"
+      },
+      {
+        "img": "images/flags/Flag_BucketDisableOtherGo_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_BucketDisableOtherGo_on"
+      }
+    ]
+  },
+  {
     "name": "Johnny Race",
     "type": "progressive",
     "allow_disabled": false,
@@ -690,5 +728,12 @@
     "img": "images/rock.png",
     "codes": "rockcounter",
     "max_quantity": 5
+  },
+  {
+    "name": "ObjectiveCountdown",
+    "type": "consumable",
+    "img": "images/bucket.png",
+    "codes": "objcountdown",
+    "max_quantity": 10
   }
 ]

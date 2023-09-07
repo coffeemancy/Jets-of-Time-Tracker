@@ -21,7 +21,8 @@ TEMPLATE_FLAG_ON="${FLAG_ON:-images/flags/template_Flag_on.png}"
 # "Flag Text" "File name portion" pointsize
 FLAGS=(
   "Bekkler Spot" "BekklerSpot" 12
-  # "Bucket List" "BucketList" 14
+  "Bucket List" "BucketList" 14
+  "Bucket Go Mode Only" "BucketDisableOtherGo" 12
   "Chronosanity" "Chronosanity" 16
   "Cyrus Grave Spot" "CyrusGraveSpot" 12
   "Early Pendant" "EarlyPendant" 16
