@@ -29,6 +29,18 @@
           },
           {
             "type": "item",
+            "item": "Flag_SunKeepSpot_off",
+            "scale": 0.9,
+            "margin": "3, 5, 3, 5"
+          },
+          {
+            "type": "item",
+            "item": "Flag_BekklerSpot_off",
+            "scale": 0.9,
+            "margin": "3, 5, 3, 5"
+          },
+          {
+            "type": "item",
             "item": "Flag_CyrusGraveSpot_off",
             "scale": 0.9,
             "margin": "3, 5, 3, 5"

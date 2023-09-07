@@ -22,7 +22,7 @@ def codes(items, luafunctions) -> Set[str]:
             for stage in item['stages']:
                 _add_codes(stage)
         else:
-            for code in item['codes'].split(','):
+            for code in item.get('codes', '').split(','):
                 codes.add(code.strip())
 
     for item in items:

@@ -201,3 +201,6 @@ function canFly()
   return (not epochfail) or fixedepoch
 end
 
+function useVanillaSunKeep()
+  return not hasFlagEnabled("SunKeepSpot")
+end

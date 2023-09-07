@@ -136,6 +136,9 @@
       {
         "img": "images/sunstone.png",
         "codes": "sunstone"
+      },
+      {
+        "img": "images/moonstone-sunstone.png"
       }
     ]
   },
@@ -465,6 +468,25 @@
         "img": "images/flags/Flag_SplitArrisDome_on.png",
         "inherit_codes": false,
         "codes": "Flag_SplitArrisDome_on"
+      }
+    ]
+  },
+  {
+    "name": "Sun Keep Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_SunKeepSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_SunKeepSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_SunKeepSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_SunKeepSpot_on"
       }
     ]
   },
