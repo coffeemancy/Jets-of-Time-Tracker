@@ -1,5 +1,5 @@
 {
-  "options_grid": {
+  "extra_flags_grid": {
     "type": "array",
     "orientation": "horizontal",
     "margin": "0, 0",
@@ -11,13 +11,13 @@
         "content": [
           {
             "type": "item",
-            "item": "Flag_ToggleExtraItems_off",
+            "item": "Flag_Rocksanity_off",
             "scale": 0.9,
             "margin": "3, 5, 3, 5"
           },
           {
             "type": "item",
-            "item": "Flag_ToggleHideFlags_off",
+            "item": "Flag_CyrusGraveSpot_off",
             "scale": 0.9,
             "margin": "3, 5, 3, 5"
           }

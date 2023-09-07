@@ -35,6 +35,12 @@ function vanillaRandoMode()
   return string.find(Tracker.ActiveVariantUID, "vanilla") ~= nil
 end
 
+-- Check if the tracker has a flag enabled
+function hasFlagEnabled(flag)
+  local code = "Flag_" .. flag .. "_on"
+  return Tracker:ProviderCountForCode(code) > 0
+end
+
 -- Check if the tracker variant is set to Items Only.
 function itemsOnlyTracking()
   return string.find(Tracker.ActiveVariantUID, "items_only") ~= nil
@@ -49,10 +55,18 @@ function canAccessDarkAges()
     return Tracker:FindObjectForCode("blacktyranoboss").Active
   end
 
-  local gateKey = Tracker:FindObjectForCode("gatekey").Active
+  return canAccessEndOfTime()
+end
+
+function canAccessEndOfTime()
+  if lostWorldsMode() then
+    return false
+  end
+
+  local gatekey = Tracker:FindObjectForCode("gatekey").Active
   local magusboss = Tracker:FindObjectForCode("magusboss").Active
   local rseriesboss = Tracker:FindObjectForCode("rseriesboss").Active
-  return gateKey or rseriesboss or magusboss
+  return gatekey or rseriesboss or magusboss
 end
 
 function canAccessSealed()
@@ -76,6 +90,18 @@ function canAccessSunkenDesert()
   local pendant = Tracker:FindObjectForCode("pendant").Active
   local gatekey = Tracker:FindObjectForCode("gatekey").Active
   return pendant or gatekey
+end
+
+function canAccessFactory()
+  if canFly() then
+    return true
+  end
+
+  if hasFlagEnabled("JohnnyRace") then
+    return Tracker:FindObjectForCode("bikekey").Active
+  end
+
+  return true
 end
 
 function canAccessGiantsClaw()
@@ -123,11 +149,16 @@ function canAccessNorthernRuins()
     return frog and magus and grandleon
   end
 
+  local tools = Tracker:FindObjectForCode("tools").Active
+
   if vanillaRandoMode() then
-    local tools = Tracker:FindObjectForCode("tools").Active
     local pendant = Tracker:FindObjectForCode("pendant").Active
     local gatekey = Tracker:FindObjectForCode("gatekey").Active
     return tools and (pendant or gatekey)
+  end
+
+  if hasFlagEnabled("RestoreTools") then
+    return tools
   end
 
   return grandleon
@@ -164,9 +195,26 @@ function couldAccessSunKeep()
 end
 
 function canFly()
-  local epochfail = Tracker:ProviderCountForCode("epochfail") > 0
-  local fixedepoch = Tracker:FindObjectForCode("fixedepoch").Active
+  if not hasFlagEnabled("EpochFail") then
+    return true
+  end
 
-  return (not epochfail) or fixedepoch
+  return Tracker:FindObjectForCode("fixedepoch").Active
 end
 
+function metObjectives()
+  if not hasFlagEnabled("BucketList") then
+    return false
+  end
+
+  local countdown = Tracker:FindObjectForCode("objcountdown")
+  return (countdown.AcquiredCount == 0)
+end
+
+function useSnailEpochFail()
+  return hasFlagEnabled("EpochFail") and not hasFlagEnabled("UnlockedSkyways")
+end
+
+function useVanillaSunKeep()
+  return not hasFlagEnabled("SunKeepSpot")
+end

@@ -16,7 +16,8 @@ print("")
 --
 -- Script variables
 --
-CHECK_COUNTERS = {chests = 0, sealed_chests = 0, base_checks = 0}
+CHECK_COUNTERS = {chests = 0, sealed_chests = 0, base_checks = 0, rocks = 0}
+ROCK_COUNTERS = {equipment = 0, inventory = 0}
 
 --
 -- Invoked when the auto-tracker is activated/connected
@@ -89,10 +90,25 @@ function handleGoMode()
       Tracker:FindObjectForCode("@Dactyl Nest/Friend to the Dactyls").AvailableChestCount == 0
     goMode = ayla and dactylChar and gateKey and dreamStone
   else
+    local magusGoMode = frog and hilt and blade
+
+    -- Bucket list currently only supports Standard and Vanilla Rando
+    -- Below presumes need to take Bucket at End of Time to complete
+    local bucketGoMode = false
+    if hasFlagEnabled("BucketList") then
+      local couldAccessEndOfTime = gateKey or canAccessFactory() or magusGoMode
+      bucketGoMode = couldAccessEndOfTime and metObjectives()
+
+      if hasFlagEnabled("BucketDisableOtherGo") then
+        return bucketGoMode
+      end
+    end
+
     goMode =
       (gateKey and dreamStone and rubyKnife) or -- 65 million BC -> 12000 BC -> Ocean Palace
-      (frog and hilt and blade) or -- Magus' Castle -> 12000 BC -> Ocean Palace
-      (pendant and cTrigger and clone) -- Death Peak -> Black Omen
+      magusGoMode or-- Magus' Castle -> 12000 BC -> Ocean Palace
+      (pendant and cTrigger and clone) or -- Death Peak -> Black Omen
+      bucketGoMode -- Bucket List
   end
   local goButton = Tracker:FindObjectForCode("gomode")
   goButton.Active = goMode
@@ -222,22 +238,35 @@ function handleMelchiorRefinements(segment)
 end
 
 --
+-- Check if moonstone has been left at Sun Keep to charge.
+--
+function isMoonstoneCharging()
+
+  local moonstoneState = AutoTracker:ReadU8(0x7F013A, 0)
+  return ((moonstoneState & 0x04) ~= 0 and (moonstoneState & 0x40) == 0)
+
+end
+
+--
 -- Handle the moonstone/sunstone.
 -- This is a progressive item and is handled differently
 -- from the other key items.
 --
 function handleMoonstone(keyItem)
 
+  -- With Sun Keep Spot extra, can have both moonstone and sunstone
+  if hasFlagEnabled("SunKeepSpot") then
+    return handleSeparateMoonstoneSunstone()
+  end
+
   moonstone = Tracker:FindObjectForCode("moonstone")
   currentStage = moonstone.CurrentStage
 
   -- Special handling for when the moonstone has been left in sun keep
   -- but hasn't been picked up yet.
-  local moonstoneState = AutoTracker:ReadU8(0x7F013A, 0)
-  if ((moonstoneState & 0x04) ~= 0 and
-      (moonstoneState & 0x40) == 0) then
+  if isMoonstoneCharging() then
     -- Moonstone was dropped off but not picked up
-    -- Set moonstone active on the tracker so it doens't get cleared
+    -- Set moonstone active on the tracker so it doesn't get cleared
     moonstone.CurrentStage = 1
     return
   end
@@ -256,6 +285,46 @@ function handleMoonstone(keyItem)
     elseif currentStage == 2 then
       moonstone.CurrentStage = 0
     end
+  end
+
+end
+
+--
+-- Handle the moonstone/sunstone when extra Sun Keep spot is added.
+-- This treats moonstone and sunstone as separate Key Items.
+--
+function handleSeparateMoonstoneSunstone()
+
+  local moonstone=nil
+  local sunstone=nil
+
+  for _,v in pairs(KEY_ITEMS) do
+    if v.name == "moonstone" then
+      moonstone = v
+    elseif v.name == "sunstone" then
+      sunstone = v
+    end
+    if moonstone and sunstone then
+      break
+    end
+  end
+
+  -- treat moonstone found if in inventory, is currently charging,
+  -- or the "Charge Moonstone" was completed
+  moonstoneFound =
+    moonstone.found or
+    isMoonstoneCharging() or
+    Tracker:FindObjectForCode("@Sun Keep/Charge Moonstone").AvailableChestCount == 0
+
+  trackerItem = Tracker:FindObjectForCode("moonstone")
+  if moonstoneFound and sunstone.found then
+    trackerItem.CurrentStage = 3
+  elseif sunstone.found then
+    trackerItem.CurrentStage = 2
+  elseif moonstoneFound then
+    trackerItem.CurrentStage = 1
+  else
+    trackerItem.CurrentStage = 0
   end
 
 end
@@ -318,18 +387,27 @@ KEY_ITEMS = {
   {value=0xE0, name="rubyknife", callback=handleItemTurnin, address=0x7F00F4, flag=0x80},
   {value=0xE2, name="clone"},
   {value=0xE3, name="tomapop", callback=handleItemTurnin, address=0x7F01A3, flag=0x80},
-  {value=0xE9, name="jetsoftime", callback=handleItemTurnin, address=0x7F00BA, flag=0x80}
+  {value=0xE9, name="jetsoftime", callback=handleItemTurnin, address=0x7F00BA, flag=0x80},
+  {value=0xD4, name="arrisseed", callback=handleItemTurnin, address=0x7F00A4, flag=0x01},
+  {value=0xD5, name="bikekey"},
+
+  -- rocks
+  {value=0xAE, name="blackrock", rock=true, equipable=true, offset=0x2A},
+  {value=0xAF, name="bluerock", rock=true, equipable=true, offset=0x2A},
+  {value=0xB0, name="silverrock", rock=true, equipable=true, offset=0x2A},
+  {value=0xB1, name="whiterock", rock=true, equipable=true, offset=0x2A},
+  {value=0xB2, name="goldrock", rock=true, equipable=true, offset=0x2A}
 }
 
 --
 -- Update key items based on if found in inventory or equipped.
 function updateKeyItems()
 
-  -- Loop the key items and toggle them based on whether or not they were found
+  -- Loop the non-rock key items and toggle them based on whether or not they were found
   for _,v in pairs(KEY_ITEMS) do
     if v.callback then
       v.callback(v)
-    else
+    elseif not v.rock then
       local trackerItem = Tracker:FindObjectForCode(v.name)
       if trackerItem and not trackerItem.Owner.ModifiedByUser then
         trackerItem.Active = v.found or v.equipped
@@ -379,6 +457,20 @@ function updateItemsFromEquipment(segment)
 
   updateKeyItems()
 
+  if hasFlagEnabled("Rocksanity") then
+    -- reset equipped rock count to 0
+    ROCK_COUNTERS.equipment = 0
+
+    -- count equipped rocks
+    for _,v in pairs(KEY_ITEMS) do
+      if v.rock and v.equipped then
+        ROCK_COUNTERS.equipment = ROCK_COUNTERS.equipment + 1
+      end
+    end
+
+    updateRockCount()
+  end
+
 end
 
 --
@@ -403,29 +495,58 @@ function updateItemsFromInventory(segment)
   end
 
   -- Loop through the inventory, determine which key items the player has found
+  local objectives = 0
   for i=0,0xF1 do
     local item = segment:ReadUInt8(0x7E2400 + i)
     -- Loop through the table of key items and see if the current
     -- inventory slot maches any of them
-    for _,v in pairs(KEY_ITEMS) do
-      if type(v.value) == "number" then
-        if item == v.value then
-          v.found = true
-        end
-      elseif type(v.value) == "table" then
-        -- Loop through possible IDs for items with more than one
-        -- Not used since the Masamume/Grand Leon change, but leaving this in
-        -- in case it's needed in the future.
-        for _, v2 in pairs(v.value) do
-          if item == v2 then
+    if item == 0x1B then
+      objectives = objectives + 1
+    else
+      for _,v in pairs(KEY_ITEMS) do
+        if type(v.value) == "number" then
+          if item == v.value then
             v.found = true
           end
+        elseif type(v.value) == "table" then
+          -- Loop through possible IDs for items with more than one
+          -- Not used since the Masamume/Grand Leon change, but leaving this in
+          -- in case it's needed in the future.
+          for _, v2 in pairs(v.value) do
+            if item == v2 then
+              v.found = true
+            end
+          end
         end
-      end
-    end -- end key item loop
+      end -- end key item loop
+    end
   end -- end inventory loop
 
   updateKeyItems()
+
+  if hasFlagEnabled("Rocksanity") then
+    -- reset rock inventory count to 0
+    ROCK_COUNTERS.inventory = 0
+
+    -- count rocks found in inventory
+    for _,v in pairs(KEY_ITEMS) do
+      if v.rock and v.found then
+        ROCK_COUNTERS.inventory = ROCK_COUNTERS.inventory + 1
+      end
+    end
+
+    updateRockCount()
+  end
+
+  if hasFlagEnabled("BucketList") then
+    local countdown = Tracker:FindObjectForCode("objcountdown")
+    countdown.AcquiredCount = objectives
+
+    -- all objectives met, check go mode
+    if objectives == 0 then
+      handleGoMode()
+    end
+  end
 
 end
 
@@ -505,7 +626,11 @@ function updateEventsAndBosses(segment)
     -- Don't check these events in Lost Worlds mode, they don't exist.
     if not lostWorldsMode() then
       -- Moonstone is the only prehistory event that is not part of the Lost Worlds mode.
-      updateEvent("@Sun Keep/Charge the Moonstone", segment, 0x7F013A, 0x40)
+      if hasFlagEnabled("SunKeepSpot") then
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Sun Keep/Charge Moonstone", segment, 0x7F013A, 0x40)
+      else
+        updateEvent("@Sun Keep/Charge the Moonstone", segment, 0x7F013A, 0x40)
+      end
 
       -- Middle Ages
       updateEvent("@Manoria Cathedral/Saved by Frog", segment, 0x7F0100, 0x01)
@@ -526,10 +651,14 @@ function updateEventsAndBosses(segment)
       -- The trial is a guess. Two flags go high here and I just picked one arbitrarily
       keyItemChecksDone = keyItemChecksDone + updateEvent("@Guardia Castle Present/King Guardia's Trial", segment, 0x7F00A2, 0x80)
       keyItemChecksDone = keyItemChecksDone + handleMelchiorRefinements(segment)
+      updateEvent("@Porre Mayor's House/Jerky Gift", segment, 0x7F013A, 0x08)
 
-      -- Checks specific to vanilla randomizer mode
-      if vanillaRandoMode() then
+      -- Checks specific to vanilla randomizer mode or specific extras flags
+      if vanillaRandoMode() or hasFlagEnabled("BekklerSpot") then
         keyItemChecksDone = keyItemChecksDone + updateEvent("@Norstein Bekkler's Tent of Horrors/Clone Game", segment, 0x7F007C, 0x01)
+      end
+
+      if vanillaRandoMode() or hasFlagEnabled("CyrusGraveSpot") then
         keyItemChecksDone = keyItemChecksDone + updateEvent("@Northern Ruins Past/Cyrus Grave", segment, 0x7F01A3, 0x40)
       end
 
@@ -538,11 +667,26 @@ function updateEventsAndBosses(segment)
         updateBoss("ozzie", segment, 0x7F01A1, 0x80)
         updateBoss("cyrusgrave", segment, 0x7F01A3, 0x40)
       end
+      if hasFlagEnabled("OzzieFortSpot") then
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Ozzie's Fort/Defeat Ozzie", segment, 0x7F01A1, 0x80)
+      end
+
+      -- Checks specific to Rocksanity
+      if hasFlagEnabled("Rocksanity") then
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Denadoro Mts/Rock", segment, 0x7F00F7, 0x08)
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Laruba Village/Rock", segment, 0x7F01AC, 0x20)
+        keyItemChecksDone = keyItemChecksDone + updateEvent("@Kajar/Rock", segment, 0x7F00F4, 0x20)
+      end
     end
 
     -- Future
     updateEvent("@Proto Dome/Fix Robo", segment, 0x7F00F3, 0x02)
-    keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Activate the Computer", segment, 0x7F00A4, 0x01)
+    if hasFlagEnabled("SplitArrisDome") then
+      keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Trade the Seed", segment, 0x7F00A4, 0x01)
+      keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Food Locker", segment, 0x7F00A4, 0x02)
+    else
+      keyItemChecksDone = keyItemChecksDone + updateEvent("@Arris Dome/Activate the Computer", segment, 0x7F00A4, 0x01)
+    end
     keyItemChecksDone = keyItemChecksDone + updateEvent("@Sun Palace/Moon Stone", segment, 0x7F013A, 0x02) -- same as Son of Sun
     keyItemChecksDone = keyItemChecksDone + updateEvent("@Geno Dome/Defeat Mother Brain", segment, 0x7F013B, 0x10) -- Same as Mother Brain
   end -- end event tracking
@@ -577,8 +721,10 @@ function updateEventsAndBosses(segment)
   handleSealedChests(segment)
 
   -- Check if the Epoch is capable of flight.
-  -- This is used in the Epoch Fail mode of Vanilla Rando
-  updateEvent("@Snail Stop/Attach Epoch Wings", segment, 0x7F00BA, 0x80)
+  -- This is used in the Epoch Fail mode or Vanilla Rando
+  if hasFlagEnabled("EpochFail") then
+    updateBoss("fixedepoch", segment, 0x7F00BA, 0x80)
+  end
 
 end
 
@@ -686,7 +832,25 @@ end
 function updateCollectionCount()
 
   local counter = Tracker:FindObjectForCode("checkcounter")
-  counter.AcquiredCount = CHECK_COUNTERS.chests + CHECK_COUNTERS.sealed_chests + CHECK_COUNTERS.base_checks
+  totalChecks = CHECK_COUNTERS.chests + CHECK_COUNTERS.sealed_chests + CHECK_COUNTERS.base_checks
+
+  -- add rocks if Rocksanity
+  if hasFlagEnabled("Rocksanity") then
+    totalChecks = totalChecks + CHECK_COUNTERS.rocks
+  end
+
+  counter.AcquiredCount = totalChecks
+
+end
+
+--
+-- Update the total rock count from inventory and equipment.
+-- This updates the rock counter on the tracker.
+--
+function updateRockCount()
+
+  local counter = Tracker:FindObjectForCode("rockcounter")
+  counter.AcquiredCount = ROCK_COUNTERS.equipment + ROCK_COUNTERS.inventory
 
 end
 
@@ -1039,6 +1203,9 @@ function updateChests(segment)
       {0x03, 0x02}  -- Kino's Cell
     }
   }
+  if hasFlagEnabled("Rocksanity") then
+    chests["Rock"] = {{0x0B, 0x40}}
+  end
   chestsOpened = chestsOpened + handleChests(segment, "@Giant's Claw/", chests)
 
   -- Ozzie's Fort
@@ -1209,6 +1376,9 @@ function updateChests(segment)
       {0x0E, 0x80}
     }
   }
+  if hasFlagEnabled("RaceLogSpot") then
+    chests["Race Log"] = {{0x0F, 0x01}}
+  end
   chestsOpened = chestsOpened + handleChests(segment, "@Lab32/", chests)
 
   -- Geno Dome

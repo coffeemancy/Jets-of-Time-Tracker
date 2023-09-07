@@ -136,6 +136,9 @@
       {
         "img": "images/sunstone.png",
         "codes": "sunstone"
+      },
+      {
+        "img": "images/moonstone-sunstone.png"
       }
     ]
   },
@@ -339,16 +342,18 @@
     "name": "Character Locks",
     "type": "progressive",
     "allow_disabled": false,
-    "initial_stage_idx": 1,
+    "initial_stage_idx": 0,
     "loop": true,
     "stages": [
       {
-        "img": "images/Flag_CharLock_on.png",
-        "codes": "Flag_CharLock_on,"
+        "img": "images/flags/Flag_CharLock_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_CharLock_off"
       },
       {
-        "img": "images/Flag_CharLock_off.png",
-        "codes": "Flag_CharLock_off"
+        "img": "images/flags/Flag_CharLock_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_CharLock_on"
       }
     ]
   },
@@ -360,11 +365,13 @@
     "loop": true,
     "stages": [
       {
-        "img": "images/Flag_EarlyPendant_off.png",
+        "img": "images/flags/Flag_EarlyPendant_off.png",
+        "inherit_codes": false,
         "codes": "Flag_EarlyPendant_off"
       },
       {
-        "img": "images/Flag_EarlyPendant_on.png",
+        "img": "images/flags/Flag_EarlyPendant_on.png",
+        "inherit_codes": false,
         "codes": "Flag_EarlyPendant_on, earlypendant"
       }
     ]
@@ -377,11 +384,13 @@
     "loop": true,
     "stages": [
       {
-        "img": "images/Flag_Chronosanity_off.png",
+        "img": "images/flags/Flag_Chronosanity_off.png",
+        "inherit_codes": false,
         "codes": "Flag_Chronosanity_off"
       },
       {
-        "img": "images/Flag_Chronosanity_on.png",
+        "img": "images/flags/Flag_Chronosanity_on.png",
+        "inherit_codes": false,
         "codes": "Flag_Chronosanity_on, chronosanity"
       }
     ]
@@ -394,21 +403,296 @@
     "loop": true,
     "stages": [
       {
-        "img": "images/Flag_Epoch_Fail_off.png",
-        "codes": "Flag_Epoch_Fail_off"
+        "img": "images/flags/Flag_EpochFail_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_EpochFail_off"
       },
       {
-        "img": "images/Flag_Epoch_Fail_on.png",
-        "codes": "Flag_Epoch_Fail_on, epochfail"
+        "img": "images/flags/Flag_EpochFail_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_EpochFail_on, epochfail"
       }
     ]
   },
   {
-    "name": "Jerky Item",
-    "type": "toggle",
+    "name": "Unlocked Skyways",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
     "loop": true,
-    "img": "images/jerky.png",
-    "codes": "hiddenjerky"
+    "stages": [
+      {
+        "img": "images/flags/Flag_UnlockedSkyways_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_UnlockedSkyways_off"
+      },
+      {
+        "img": "images/flags/Flag_UnlockedSkyways_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_UnlockedSkyways_on, unlockedskyways"
+      }
+    ]
+  },
+  {
+    "name": "Rocksanity",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_Rocksanity_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_Rocksanity_off"
+      },
+      {
+        "img": "images/flags/Flag_Rocksanity_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_Rocksanity_on, rocksanity"
+      }
+    ]
+  },
+  {
+    "name": "Bucket List",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_BucketList_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_BucketList_off"
+      },
+      {
+        "img": "images/flags/Flag_BucketList_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_BucketList_on"
+      }
+    ]
+  },
+  {
+    "name": "Bucket Go Mode Only",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_BucketDisableOtherGo_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_BucketDisableOtherGo_off"
+      },
+      {
+        "img": "images/flags/Flag_BucketDisableOtherGo_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_BucketDisableOtherGo_on"
+      }
+    ]
+  },
+  {
+    "name": "Johnny Race",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_JohnnyRace_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_JohnnyRace_off"
+      },
+      {
+        "img": "images/flags/Flag_JohnnyRace_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_JohnnyRace_on, johnnyrace"
+      }
+    ]
+  },
+  {
+    "name": "Restore Tools",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_RestoreTools_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_RestoreTools_off"
+      },
+      {
+        "img": "images/flags/Flag_RestoreTools_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_RestoreTools_on"
+      }
+    ]
+  },
+  {
+    "name": "Split Arris Dome",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_SplitArrisDome_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_SplitArrisDome_off"
+      },
+      {
+        "img": "images/flags/Flag_SplitArrisDome_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_SplitArrisDome_on"
+      }
+    ]
+  },
+  {
+    "name": "Sun Keep Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_SunKeepSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_SunKeepSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_SunKeepSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_SunKeepSpot_on"
+      }
+    ]
+  },
+  {
+    "name": "Bekkler Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_BekklerSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_BekklerSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_BekklerSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_BekklerSpot_on"
+      }
+    ]
+  },
+  {
+    "name": "Cyrus Grave Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_CyrusGraveSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_CyrusGraveSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_CyrusGraveSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_CyrusGraveSpot_on"
+      }
+    ]
+  },
+  {
+    "name": "Ozzie's Fort Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_OzzieFortSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_OzzieFortSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_OzzieFortSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_OzzieFortSpot_on"
+      }
+    ]
+  },
+  {
+    "name": "Race Log Spot",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_RaceLogSpot_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_RaceLogSpot_off"
+      },
+      {
+        "img": "images/flags/Flag_RaceLogSpot_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_RaceLogSpot_on"
+      }
+    ]
+  },
+  {
+    "name": "Toggle Extra Items",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_ToggleExtraItems_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_ToggleExtraItems_off, toggle_extra_items"
+      },
+      {
+        "img": "images/flags/Flag_ToggleExtraItems_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_ToggleExtraItems_on, toggle_extra_items"
+      }
+    ]
+  },
+  {
+    "name": "Toggle Hide Flags",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_ToggleHideFlags_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_ToggleHideFlags_off, toggle_hide_flags"
+      },
+      {
+        "img": "images/flags/Flag_ToggleHideFlags_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_ToggleHideFlags_on, toggle_hide_flags"
+      }
+    ]
+  },
+  {
+    "name": "Arris Seed",
+    "type": "toggle",
+    "loop": "true",
+    "img": "images/arrisseed.png",
+    "codes": "arrisseed"
+  },
+  {
+    "name": "Bike Key",
+    "type": "toggle",
+    "loop": "true",
+    "img": "images/bikekey.png",
+    "codes": "bikekey"
   },
   {
     "name": "Fixed Epoch",
@@ -437,5 +721,19 @@
     "img": "images/kiyes.png",
     "codes": "checkcounter",
     "max_quantity": 200
+  },
+  {
+    "name": "RockCounter",
+    "type": "consumable",
+    "img": "images/rock.png",
+    "codes": "rockcounter",
+    "max_quantity": 5
+  },
+  {
+    "name": "ObjectiveCountdown",
+    "type": "consumable",
+    "img": "images/bucket.png",
+    "codes": "objcountdown",
+    "max_quantity": 10
   }
 ]

@@ -82,7 +82,9 @@ def is_pack_file(path: Path, root: Path):
 
 @pytest.fixture(scope='session')
 def jsonfiles(paths) -> List[Path]:
-    return [path for path in paths['root'].rglob('*.json') if is_pack_file(path, paths['root'])]
+    return [
+        path for path in paths['root'].rglob('*.json') if not path.is_symlink() and is_pack_file(path, paths['root'])
+    ]
 
 
 @pytest.fixture(scope='session')

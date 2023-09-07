@@ -34,13 +34,6 @@
                     "type": "layout",
                     "key": "extra_flags_grid"
                   }
-                },
-                {
-                  "title": "Options",
-                  "content": {
-                    "type": "layout",
-                    "key": "options_grid"
-                  }
                 }
               ]
             }

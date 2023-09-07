@@ -163,8 +163,17 @@
                 "name": "Charge the Moonstone",
                 "hosted_item": "sunstone",
                 "visibility_rules": [
-                  "$couldAccessSunKeep"
+                  "$couldAccessSunKeep, $useVanillaSunKeep"
                 ]
+              },
+              {
+                "name": "Charge Moonstone",
+                "visibility_rules": [
+                  "$couldAccessSunKeep, Flag_SunKeepSpot_on"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
               }
             ],
             "map_locations": [
@@ -229,6 +238,38 @@
                 "map": "All Eras (Vertical)",
                 "x": 848,
                 "y": 565
+              }
+            ]
+          },
+          {
+            "name": "Laruba Village",
+            "access_rules": [],
+            "sections": [
+              {
+                "name": "Rock",
+                "visibility_rules": [
+                  "rocksanity"
+                ],
+                "chest_unopened_img": "images/charno.png",
+                "chest_opened_img": "images/rock.png",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "Prehistory",
+                "x": 454,
+                "y": 305
+              },
+              {
+                "map": "All Eras",
+                "x": 454,
+                "y": 305
+              },
+              {
+                "map": "All Eras (Vertical)",
+                "x": 454,
+                "y": 305
               }
             ]
           }
@@ -341,6 +382,75 @@
                 "y": 652
               }
             ]
+          },
+          {
+            "name": "Blackbird",
+            "access_rules": [
+              "unlockedskyways",
+              "blacktyranoboss",
+              "magusboss"
+            ],
+            "sections": [
+              {
+                "name": "Attach Epoch Wings",
+                "visibility_rules": [
+                  "epochfail"
+                ],
+                "access_rules": [
+                  "jetsoftime"
+                ],
+                "hosted_item": "fixedepoch"
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "Dark Ages",
+                "x": 1175,
+                "y": 817
+              },
+              {
+                "map": "All Eras",
+                "x": 1175,
+                "y": 1841
+              },
+              {
+                "map": "All Eras (Vertical)",
+                "x": 2711,
+                "y": 817
+              }
+            ]
+          },
+          {
+            "name": "Kajar",
+            "access_rules": [],
+            "sections": [
+              {
+                "name": "Rock",
+                "visibility_rules": [
+                  "rocksanity"
+                ],
+                "chest_unopened_img": "images/charno.png",
+                "chest_opened_img": "images/rock.png",
+                "item_count": 1
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "Dark Ages",
+                "x": 1223,
+                "y": 807
+              },
+              {
+                "map": "All Eras",
+                "x": 1223,
+                "y": 1831
+              },
+              {
+                "map": "All Eras (Vertical)",
+                "x": 2759,
+                "y": 807
+              }
+            ]
           }
         ]
       },
@@ -348,6 +458,9 @@
         "name": "Middle Ages",
         "color": "#306848",
         "access_rules": [
+          "$notLostWorldsMode"
+        ],
+        "visibility_rules": [
           "$notLostWorldsMode"
         ],
         "children": [
@@ -685,6 +798,15 @@
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
                 "item_count": 3
+              },
+              {
+                "name": "Rock",
+                "visibility_rules": [
+                  "rocksanity"
+                ],
+                "chest_unopened_img": "images/charno.png",
+                "chest_opened_img": "images/rock.png",
+                "item_count": 1
               }
             ],
             "map_locations": [
@@ -829,6 +951,15 @@
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
                 "item_count": 1
+              },
+              {
+                "name": "Rock",
+                "visibility_rules": [
+                  "rocksanity"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/rock.png",
+                "item_count": 1
               }
             ],
             "map_locations": [
@@ -927,6 +1058,15 @@
                   "$legacyOfCyrusMode"
                 ],
                 "hosted_item": "ozzie"
+              },
+              {
+                "name": "Defeat Ozzie",
+                "visibility_rules": [
+                  "$notLegacyOfCyrusMode,Flag_OzzieFortSpot_on"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
               },
               {
                 "name": "Front Half",
@@ -1040,20 +1180,28 @@
             ],
             "sections": [
               {
-                "name": "Cyrus Grave (LoC)",
-                "visibility_rules": [
-                  "$legacyOfCyrusMode"
-                ],
-                "hosted_item": "cyrusgrave"
-              },
-              {
                 "name": "Cyrus Grave",
+                "access_rules": [
+                  "grandleon",
+                  "Flag_RestoreTools_on,tools"
+                ],
                 "visibility_rules": [
-                  "$vanillaRandoMode"
+                  "$vanillaRandoMode",
+                  "Flag_CyrusGraveSpot_on"
                 ],
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
                 "item_count": 1
+              },
+              {
+                "name": "Cyrus Grave (LoC)",
+                "access_rules": [
+                  "grandleon"
+                ],
+                "visibility_rules": [
+                  "$legacyOfCyrusMode,Flag_CyrusGraveSpot_off"
+                ],
+                "hosted_item": "cyrusgrave"
               },
               {
                 "name": "Chests",
@@ -1134,6 +1282,9 @@
         "access_rules": [
           "$notLostWorldsMode"
         ],
+        "visibility_rules": [
+          "$notLostWorldsMode"
+        ],
         "children": [
           {
             "name": "Guardia Castle Present",
@@ -1160,8 +1311,8 @@
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
                 "access_rules": [
-                  "marle,prismshard, [pendant]",
-                  "marle,prismshard, [gatekey]"
+                  "[marle], prismshard, [pendant]",
+                  "[marle], prismshard, [gatekey]"
                 ],
                 "item_count": 1
               },
@@ -1222,7 +1373,7 @@
                   "chronosanity"
                 ],
                 "access_rules": [
-                  "marle,prismshard"
+                  "prismshard"
                 ],
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
@@ -1272,7 +1423,7 @@
               {
                 "name": "Attach Epoch Wings",
                 "visibility_rules": [
-                  "epochfail"
+                  "$useSnailEpochFail"
                 ],
                 "access_rules": [
                   "jetsoftime"
@@ -1548,6 +1699,15 @@
             "name": "Porre Mayor's House",
             "sections": [
               {
+                "name": "Jerky Gift",
+                "access_rules": [
+                  "jerky"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
+              },
+              {
                 "name": "Chests",
                 "visibility_rules": [
                   "chronosanity"
@@ -1682,7 +1842,8 @@
               "ctrigger"
             ],
             "visibility_rules": [
-              "$vanillaRandoMode"
+              "$vanillaRandoMode",
+              "Flag_BekklerSpot_on"
             ],
             "sections": [
               {
@@ -1732,6 +1893,30 @@
               },
               {
                 "name": "Activate the Computer",
+                "visibility_rules": [
+                  "Flag_SplitArrisDome_off"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
+              },
+              {
+                "name": "Trade the Seed",
+                "visibility_rules": [
+                  "Flag_SplitArrisDome_on"
+                ],
+                "access_rules": [
+                  "arrisseed"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
+              },
+              {
+                "name": "Food Locker",
+                "visibility_rules": [
+                  "Flag_SplitArrisDome_on"
+                ],
                 "chest_unopened_img": "images/kino.png",
                 "chest_opened_img": "images/kiyes.png",
                 "item_count": 1
@@ -1779,8 +1964,8 @@
           {
             "name": "Proto Dome",
             "access_rules": [
-              "Flag_CharLock_on,rseriesboss",
-              "Flag_CharLock_off"
+              "$canAccessFactory,Flag_CharLock_on,rseriesboss",
+              "$canAccessFactory,Flag_CharLock_off"
             ],
             "sections": [
               {
@@ -1810,6 +1995,9 @@
           },
           {
             "name": "Factory",
+            "access_rules": [
+              "$canAccessFactory"
+            ],
             "sections": [
               {
                 "name": "R-Series",
@@ -2103,6 +2291,19 @@
             "name": "Lab32",
             "sections": [
               {
+                "name": "Race Log",
+                "visibility_rules": [
+                  "Flag_RaceLogSpot_on"
+                ],
+                "access_rules": [
+                  "Flag_JohnnyRace_off",
+                  "bikekey"
+                ],
+                "chest_unopened_img": "images/kino.png",
+                "chest_opened_img": "images/kiyes.png",
+                "item_count": 1
+              },
+              {
                 "name": "Chests",
                 "visibility_rules": [
                   "chronosanity"
@@ -2136,10 +2337,10 @@
         "name": "End Of Time",
         "color": "#482828",
         "access_rules": [
-          "$notLostWorldsMode",
-          "gatekey",
-          "rseriesboss",
-          "magusboss"
+          "$canAccessEndOfTime"
+        ],
+        "visibility_rules": [
+          "$notLostWorldsMode"
         ],
         "children": [
           {
@@ -2165,6 +2366,37 @@
                 "map": "All Eras (Vertical)",
                 "x": 2649,
                 "y": 2335
+              }
+            ]
+          },
+          {
+            "name": "Bucket",
+            "visibility_rules": [
+              "Flag_BucketList_on"
+            ],
+            "access_rules": [
+              "$metObjectives"
+            ],
+            "sections": [
+              {
+                "name": "Bucket Boss Guantlet"
+              }
+            ],
+            "map_locations": [
+              {
+                "map": "End Of Time",
+                "x": 1073,
+                "y": 672
+              },
+              {
+                "map": "All Eras",
+                "x": 4145,
+                "y": 1696
+              },
+              {
+                "map": "All Eras (Vertical)",
+                "x": 2609,
+                "y": 2720
               }
             ]
           }
