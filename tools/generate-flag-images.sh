@@ -36,6 +36,7 @@ FLAGS=(
   "Sun Keep Spot" "SunKeepSpot" 14
   "Unlocked Skyways" "UnlockedSkyways" 14
   "Show Extra Items" "ToggleExtraItems" 12
+  "Hide Flags" "ToggleHideFlags" 12
 )
 
 function set_imagemagick_command {

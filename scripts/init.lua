@@ -37,7 +37,17 @@ function addCodeWatchers()
     end
   end
 
+  -- Toggles displaying "Flags" on Map Tracker (when off just in settings menu)
+  function toggleHideFlags(_code)
+    if hasFlagEnabled("ToggleHideFlags") then
+      Tracker:AddLayouts("layouts/components/bottom_dock_hide_flags.json")
+    else
+      Tracker:AddLayouts("layouts/components/bottom_dock.json")
+    end
+  end
+
   ScriptHost:AddWatchForCode("ToggleExtraItems", "toggle_extra_items", toggleExtraItems)
+  ScriptHost:AddWatchForCode("ToggleHideFlags", "toggle_hide_flags", toggleHideFlags)
 
 end
 

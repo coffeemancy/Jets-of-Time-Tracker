@@ -624,6 +624,25 @@
     ]
   },
   {
+    "name": "Toggle Hide Flags",
+    "type": "progressive",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "loop": true,
+    "stages": [
+      {
+        "img": "images/flags/Flag_ToggleHideFlags_off.png",
+        "inherit_codes": false,
+        "codes": "Flag_ToggleHideFlags_off, toggle_hide_flags"
+      },
+      {
+        "img": "images/flags/Flag_ToggleHideFlags_on.png",
+        "inherit_codes": false,
+        "codes": "Flag_ToggleHideFlags_on, toggle_hide_flags"
+      }
+    ]
+  },
+  {
     "name": "Arris Seed",
     "type": "toggle",
     "loop": "true",
