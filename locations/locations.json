@@ -1054,7 +1054,8 @@
               {
                 "name": "Cyrus Grave",
                 "access_rules": [
-                  "grandleon"
+                  "grandleon",
+                  "Flag_RestoreTools_on,tools"
                 ],
                 "visibility_rules": [
                   "$vanillaRandoMode",
@@ -1802,8 +1803,8 @@
           {
             "name": "Proto Dome",
             "access_rules": [
-              "Flag_CharLock_on,rseriesboss",
-              "Flag_CharLock_off"
+              "$canAccessFactory,Flag_CharLock_on,rseriesboss",
+              "$canAccessFactory,Flag_CharLock_off"
             ],
             "sections": [
               {
@@ -1833,6 +1834,9 @@
           },
           {
             "name": "Factory",
+            "access_rules": [
+              "$canAccessFactory"
+            ],
             "sections": [
               {
                 "name": "R-Series",
@@ -2131,6 +2135,7 @@
                   "Flag_RaceLogSpot_on"
                 ],
                 "access_rules": [
+                  "Flag_JohnnyRace_off",
                   "bikekey"
                 ],
                 "chest_unopened_img": "images/kino.png",
@@ -2171,10 +2176,10 @@
         "name": "End Of Time",
         "color": "#482828",
         "access_rules": [
-          "$notLostWorldsMode",
-          "gatekey",
-          "rseriesboss",
-          "magusboss"
+          "$canAccessEndOfTime"
+        ],
+        "visibility_rules": [
+          "$notLostWorldsMode"
         ],
         "children": [
           {

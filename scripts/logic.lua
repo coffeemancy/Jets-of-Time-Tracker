@@ -55,10 +55,18 @@ function canAccessDarkAges()
     return Tracker:FindObjectForCode("blacktyranoboss").Active
   end
 
-  local gateKey = Tracker:FindObjectForCode("gatekey").Active
+  return canAccessEndOfTime()
+end
+
+function canAccessEndOfTime()
+  if lostWorldsMode() then
+    return false
+  end
+
+  local gatekey = Tracker:FindObjectForCode("gatekey").Active
   local magusboss = Tracker:FindObjectForCode("magusboss").Active
   local rseriesboss = Tracker:FindObjectForCode("rseriesboss").Active
-  return gateKey or rseriesboss or magusboss
+  return gatekey or rseriesboss or magusboss
 end
 
 function canAccessSealed()
@@ -82,6 +90,18 @@ function canAccessSunkenDesert()
   local pendant = Tracker:FindObjectForCode("pendant").Active
   local gatekey = Tracker:FindObjectForCode("gatekey").Active
   return pendant or gatekey
+end
+
+function canAccessFactory()
+  if canFly() then
+    return true
+  end
+
+  if hasFlagEnabled("JohnnyRace") then
+    return Tracker:FindObjectForCode("bikekey").Active
+  end
+
+  return true
 end
 
 function canAccessGiantsClaw()
@@ -129,11 +149,16 @@ function canAccessNorthernRuins()
     return frog and magus and grandleon
   end
 
+  local tools = Tracker:FindObjectForCode("tools").Active
+
   if vanillaRandoMode() then
-    local tools = Tracker:FindObjectForCode("tools").Active
     local pendant = Tracker:FindObjectForCode("pendant").Active
     local gatekey = Tracker:FindObjectForCode("gatekey").Active
     return tools and (pendant or gatekey)
+  end
+
+  if hasFlagEnabled("RestoreTools") then
+    return tools
   end
 
   return grandleon

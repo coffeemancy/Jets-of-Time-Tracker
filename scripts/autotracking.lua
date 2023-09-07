@@ -318,7 +318,8 @@ KEY_ITEMS = {
   {value=0xE0, name="rubyknife", callback=handleItemTurnin, address=0x7F00F4, flag=0x80},
   {value=0xE2, name="clone"},
   {value=0xE3, name="tomapop", callback=handleItemTurnin, address=0x7F01A3, flag=0x80},
-  {value=0xE9, name="jetsoftime", callback=handleItemTurnin, address=0x7F00BA, flag=0x80}
+  {value=0xE9, name="jetsoftime", callback=handleItemTurnin, address=0x7F00BA, flag=0x80},
+  {value=0xD5, name="bikekey"}
 }
 
 --
